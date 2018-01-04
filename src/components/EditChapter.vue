@@ -2,6 +2,7 @@
   <div>
     <h1>{{chapter.title}}</h1>
 
+    <router-link :to="'/admin/chapters/' + chapter._id + '/pages/add'">Ny sida</router-link>
   </div>
 </template>
 

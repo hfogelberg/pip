@@ -9,6 +9,7 @@ import CreateChapter from "./components/CreateChapter";
 import EditChapter from "./components/EditChapter";
 import Characters from "./components/Characters";
 import Callback from "./components/Callback";
+import AddPage from "./components/AddPage";
 
 const router = new VueRouter({
   mode: "history",
@@ -22,7 +23,8 @@ const router = new VueRouter({
     { path: "/admin/chapters", component: AdminChapters },
     { path: "/admin/chapters/create", component: CreateChapter },
     { path: "/admin/chapters/:id", component: EditChapter },
-    { path: "/characters", component: Characters }
+    { path: "/characters", component: Characters },
+    { path: "/admin/chapters/:id/pages/add", component: AddPage }
   ]
 });
 

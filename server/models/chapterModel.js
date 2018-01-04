@@ -10,7 +10,22 @@ const ChapterSchema = new mongoose.Schema({
   image: {
     type: String
     // required: [true, "image is missing"]
-  }
+  },
+  pages: [
+    {
+      text: {
+        type: String,
+        required: [true, "Text is missing"],
+        trim: true
+      },
+      pageNumber: {
+        type: Number
+      },
+      image: {
+        type: String
+      }
+    }
+  ]
 });
 
 var Chapter = mongoose.model("chapter", ChapterSchema);
