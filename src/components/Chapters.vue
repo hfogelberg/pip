@@ -6,7 +6,7 @@
 
     <ul>
       <li v-for="chapter in chapters">
-        {{chapter.title}}
+        <router-link :to="'/chapter/' + chapter._id">{{chapter.title}}</router-link>
       </li>
     </ul>
   </div>

@@ -11,6 +11,7 @@ import Characters from "./components/Characters";
 import Callback from "./components/Callback";
 import AddPage from "./components/AddPage";
 import Chapters from "./components/Chapters";
+import Chapter from "./components/Chapter";
 
 const router = new VueRouter({
   mode: "history",
@@ -26,7 +27,8 @@ const router = new VueRouter({
     { path: "/admin/chapters/:id", component: EditChapter },
     { path: "/characters", component: Characters },
     { path: "/admin/chapters/:id/pages/add", component: AddPage },
-    { path: "/chapters", component: Chapters }
+    { path: "/chapters", component: Chapters },
+    { path: "/chapter/:id", component: Chapter }
   ]
 });
 
