@@ -35,13 +35,19 @@ export default {
       imageSrc: "",
       files: [],
       text: "",
-      chapterId: "",
-      pageNumber: 0
+      chapterId: ""
     }
   },
 
   mounted() {
-    this.chapterId = this.$route.params.id
+    this.chapterId = this.$route.params.id;
+    this.$store.dispatch("getNumPages", this.chapterId);
+  },
+
+  computed: {
+    pageNumber() {
+      return this.$store.getters.numPages + 1;
+    }
   },
 
   methods: {
@@ -54,6 +60,7 @@ export default {
 
       // File
       let reader = new FileReader();
+      let chapterId = this.chapterId;
 
       reader.readAsDataURL(this.files[0]);
       reader.onload = (e) => {
@@ -70,7 +77,7 @@ export default {
       axios
         .post("http://localhost:3000/api/page", data )
         .then(function(res) {
-           vm.$router.push("/admin/chapters/" + this.chapterId);
+           vm.$router.push("/admin/chapters/" + chapterId);
         })
         .catch(function(error) {
           console.log(error);

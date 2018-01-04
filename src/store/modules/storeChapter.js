@@ -4,10 +4,15 @@ import axios from "axios";
 
 const state = {
   chapters: [],
-  chapter: {}
+  chapter: {},
+  numPages: 0
 };
 
 const getters = {
+  numPages: state => {
+    return state.numPages;
+  },
+
   chapters: state => {
     return state.chapters;
   },
@@ -18,6 +23,10 @@ const getters = {
 };
 
 const mutations = {
+  numPages: (state, numPages) => {
+    state.numPages = numPages;
+  },
+
   chapter: (state, chapter) => {
     state.chapter = chapter;
   },
@@ -35,6 +44,17 @@ const actions = {
       .get(url)
       .then(res => {
         commit("chapter", res.data.chapter);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  getNumPages({ commit }, id) {
+    let url = `http://localhost:3000/api/numpages/${id}`;
+    axios
+      .get(url)
+      .then(res => {
+        commit("numPages", res.data.numPages);
       })
       .catch(err => {
         console.log(err);
