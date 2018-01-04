@@ -5,11 +5,9 @@ const { Chapter } = require("../models/chapterModel"),
 let chapter = (app, db, cloudinary) => {
   app.get("/api/numpages/:id", (req, res) => {
     const id = req.params.id;
-    console.log(`Chapter id ${id}`);
 
     Chapter.findOne({ _id: id })
       .then(chapter => {
-        console.log("Found chapter", chapter);
         const numPages = chapter.pages.length;
         res.setHeader("Content-Type", "application/json");
         res.send(JSON.stringify({ status: "OK", numPages: numPages }));
@@ -38,7 +36,6 @@ let chapter = (app, db, cloudinary) => {
 
         Chapter.findByIdAndUpdate(chapterId, { $push: { pages: page } })
           .then(result => {
-            console.log("Insert page OK");
             res.setHeader("Content-Type", "application/json");
             res.send(JSON.stringify({ status: "OK" }));
           })
@@ -54,7 +51,6 @@ let chapter = (app, db, cloudinary) => {
 
     Chapter.findOne({ _id: id })
       .then(chapter => {
-        console.log("Found chapter", chapter);
         res.setHeader("Content-Type", "application/json");
         res.send(JSON.stringify({ status: "OK", chapter: chapter }));
       })
@@ -108,7 +104,6 @@ let chapter = (app, db, cloudinary) => {
       chapter
         .save()
         .then(c => {
-          console.log("Chapter saved");
           res.json({ message: "Chapter saved", chapter: chapter });
         })
         .catch(e => {

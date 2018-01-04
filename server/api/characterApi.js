@@ -3,9 +3,6 @@ const { Character } = require("../models/characterModel"),
   upload = multer({ dest: "uploads/" });
 
 let character = (app, db, cloudinary) => {
-  // POST - create character
-  // NOTE: During dev no sign up
-
   app.get("/api/characters", (req, res) => {
     Character.find()
       .then(characters => {
@@ -17,7 +14,6 @@ let character = (app, db, cloudinary) => {
   });
 
   app.post("/api/character", upload.single("image"), (req, res, next) => {
-    console.log(req.body);
     const source = `./uploads/${req.file.filename}`;
 
     cloudinary.uploader.upload(source, function(result) {
@@ -39,7 +35,6 @@ let character = (app, db, cloudinary) => {
       character
         .save()
         .then(c => {
-          console.log("Character saved");
           res.json({ message: "Character saved", character: character });
         })
         .catch(e => {

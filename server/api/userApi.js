@@ -1,10 +1,7 @@
 const { User } = require("../models/userModel");
 
 let user = (app, db) => {
-  // POST - log in user
-  // NOTE: During dev no sign up
   app.post("/api/user", (req, res) => {
-    console.log("**** POST USER ****");
     const token = req.body.user.cookieVal;
     const webUser = {
       firstName: req.body.user.firstName,
@@ -13,10 +10,8 @@ let user = (app, db) => {
       photo: req.body.user.photo
     };
 
-    console.log(webUser);
     User.findOne({ email: webUser.email })
       .then(user => {
-        console.log("User is in Db");
         if (user) {
           // User exists
           let hasToken = false;
@@ -28,12 +23,10 @@ let user = (app, db) => {
           });
 
           if (!hasToken) {
-            console.log("New token needs to be added");
             user.tokens.push({ token });
             user
               .save()
               .then(u => {
-                console.log("DB user", user);
                 res.json({
                   message: "New token added",
                   user: user
@@ -44,9 +37,6 @@ let user = (app, db) => {
                 res.status(500).send({ message: "Error updating user" });
               });
           } else {
-            console.log("Token is already in Db");
-            console.log("DB user", user);
-
             res.json({
               message: "Have username and token for user. All is OK",
               user: user
