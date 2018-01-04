@@ -64,6 +64,21 @@ let chapter = (app, db, cloudinary) => {
       });
   });
 
+  app.get("/api/chapternames", (req, res) => {
+    const id = req.params.id;
+
+    Chapter.find()
+      .select({ title: 1 })
+      .then(chapter => {
+        res.setHeader("Content-Type", "application/json");
+        res.send(JSON.stringify({ status: "OK", names: chapter }));
+      })
+      .catch(err => {
+        console.log(`Error fetching character: ${err}`);
+        res.status(500).send({ err });
+      });
+  });
+
   app.get("/api/chapters", (req, res) => {
     Chapter.find()
       .then(chapters => {

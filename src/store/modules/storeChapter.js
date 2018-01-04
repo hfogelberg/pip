@@ -5,10 +5,15 @@ import axios from "axios";
 const state = {
   chapters: [],
   chapter: {},
-  numPages: 0
+  numPages: 0,
+  chapterNames: []
 };
 
 const getters = {
+  chapterNames: state => {
+    return state.chapterNames;
+  },
+
   numPages: state => {
     return state.numPages;
   },
@@ -23,6 +28,10 @@ const getters = {
 };
 
 const mutations = {
+  chapterNames: (state, chapterNames) => {
+    state.chapterNames = chapterNames;
+  },
+
   numPages: (state, numPages) => {
     state.numPages = numPages;
   },
@@ -38,6 +47,19 @@ const mutations = {
 };
 
 const actions = {
+  getChapterNames({ commit }) {
+    console.log("Get Chapter names");
+    let url = `http://localhost:3000/api/chapternames`;
+    axios
+      .get(url)
+      .then(res => {
+        commit("chapterNames", res.data.names);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
   getChapterById({ commit }, id) {
     let url = `http://localhost:3000/api/chapters/${id}`;
     axios
