@@ -3,6 +3,22 @@ const { Chapter } = require("../models/chapterModel"),
   upload = multer({ dest: "uploads/" });
 
 let chapter = (app, db, cloudinary) => {
+  app.get("/api/chapters/:id", (req, res) => {
+    const id = req.params.id;
+    console.log(`Chapter id ${id}`);
+
+    Chapter.findOne({ _id: id })
+      .then(chapter => {
+        console.log("Found chapter", chapter);
+        res.setHeader("Content-Type", "application/json");
+        res.send(JSON.stringify({ status: "OK", chapter: chapter }));
+      })
+      .catch(err => {
+        console.log(`Error fetching character: ${err}`);
+        res.status(500).send({ err });
+      });
+  });
+
   app.get("/api/chapters", (req, res) => {
     Chapter.find()
       .then(chapters => {

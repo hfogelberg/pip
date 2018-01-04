@@ -9,11 +9,3 @@ export default {
   props: ["chapter"]
 }
 </script>
-
-<style lang="scss" scoped>
-  .chapter{
-    height: 100px;
-    width: 300px;
-    background-color: red;
-  }
-</style>
