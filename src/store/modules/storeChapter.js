@@ -6,10 +6,33 @@ const state = {
   chapters: [],
   chapter: {},
   numPages: 0,
-  chapterNames: []
+  chapterNames: [],
+  pages: [],
+  pageId: 0,
+  currentPage: {}
 };
 
 const getters = {
+  isLastPage: state => {
+    if (state.pageId == state.pages.length - 1) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  currentPage: state => {
+    return state.pages[state.pageId];
+  },
+
+  pages: state => {
+    return state.pages;
+  },
+
+  pageId: state => {
+    return state.pageId;
+  },
+
   chapterNames: state => {
     return state.chapterNames;
   },
@@ -28,6 +51,19 @@ const getters = {
 };
 
 const mutations = {
+  resetPage: state => {
+    state.pageId = 0;
+  },
+
+  previousPage: state => {
+    state.pageId = state.pageId - 1;
+  },
+
+  nextPage: state => {
+    console.log("Next Page mutation");
+    state.pageId = state.pageId + 1;
+  },
+
   chapterNames: (state, chapterNames) => {
     state.chapterNames = chapterNames;
   },
@@ -40,6 +76,10 @@ const mutations = {
     state.chapter = chapter;
   },
 
+  pages: (state, pages) => {
+    state.pages = pages;
+  },
+
   chapters: (state, chapters) => {
     console.log("Mutation called", chapters);
     state.chapters = chapters;
@@ -47,6 +87,14 @@ const mutations = {
 };
 
 const actions = {
+  firstPage({ commit }) {
+    commit("resetPage");
+  },
+
+  nextPage({ commit }) {
+    commit("nextPage");
+  },
+
   getChapterNames({ commit }) {
     console.log("Get Chapter names");
     let url = `http://localhost:3000/api/chapternames`;
@@ -66,11 +114,13 @@ const actions = {
       .get(url)
       .then(res => {
         commit("chapter", res.data.chapter);
+        commit("pages", res.data.chapter.pages);
       })
       .catch(err => {
         console.log(err);
       });
   },
+
   getNumPages({ commit }, id) {
     let url = `http://localhost:3000/api/numpages/${id}`;
     axios
@@ -82,6 +132,7 @@ const actions = {
         console.log(err);
       });
   },
+
   getChapters({ commit }) {
     console.log("Get chapters");
     let url = "http://localhost:3000/api/chapters";

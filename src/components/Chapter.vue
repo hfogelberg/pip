@@ -1,12 +1,14 @@
 <template>
-  <div>
+  <div class="chapter">
     <h1>{{chapter.title}}</h1>
 
-    <ul>
-      <li v-for="page in chapter.pages">
-        <page :page="page"></page>
-      </li>
-    </ul>
+    <page></page>
+    <div v-if="isLastPage">
+      <router-link to="/chapters">Slut!</router-link>
+    </div>
+    <div v-else>
+      <button @click="nextPage">Nästa sida</button>
+    </div>
   </div>
 </template>
 
@@ -17,10 +19,24 @@ export default {
   components: {
     page: Page
   },
+  methods: {
+    nextPage() {
+      this.$store.dispatch("nextPage");
+    }
+  },
   mounted() {
-    this.$store.dispatch('getChapterById', this.$route.params.id)
+    this.$store.dispatch("getChapterById", this.$route.params.id)
+    this.$store.dispatch("firstPage");
   },
   computed: {
+    isLastPage() {
+      return this.$store.getters.isLastPage;
+    },
+
+    currentPage() {
+      return this.$store.getters.currentPage;
+    },
+
     chapter() {
       return this.$store.getters.chapter;
     }

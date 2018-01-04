@@ -3,6 +3,7 @@
     <h2>Index</h2>
 
     <hr />
+    <router-link to="/admin">Admin</router-link><br>
     <router-link to="/characters">Karaktärer</router-link> <br>
     <router-link to="/chapters">Kapitel</router-link>
   </div>
