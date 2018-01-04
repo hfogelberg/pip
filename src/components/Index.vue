@@ -7,3 +7,7 @@
     <router-link to="/chapters">Kapitel</router-link>
   </div>
 </template>
+
+<style lang="scss" scoped>
+@import '../assets/styles/style.scss'
+</style>

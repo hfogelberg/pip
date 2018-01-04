@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-
 body {
     font-family: 'Exo', sans-serif;
     background-color: $background-color;
@@ -49,6 +48,10 @@ p {
 
 .container {
     padding: $m-size;
+}
+
+ul {
+    list-style: none;
 }
 
 ul.links {
