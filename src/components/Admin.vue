@@ -4,6 +4,9 @@
 
     <hr />
 
-    <router-link to="/admin/characters">Karaktärer</router-link>
+    <ul>
+      <li><router-link to="/admin/characters">Karaktärer</router-link></li>
+      <li><router-link to="/admin/chapters">Kapitel</router-link></li>
+    </ul>
   </div>  
 </template>

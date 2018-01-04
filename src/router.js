@@ -4,6 +4,9 @@ import Login from "./components/Login";
 import Admin from "./components/Admin";
 import AdminCharacters from "./components/AdminCharacters";
 import CreateCharacter from "./components/CreateCharacter";
+import AdminChapters from "./components/AdminChapters";
+import CreateChapter from "./components/CreateChapter";
+import EditChapter from "./components/EditChapter";
 import Characters from "./components/Characters";
 import Callback from "./components/Callback";
 
@@ -16,6 +19,9 @@ const router = new VueRouter({
     { path: "/admin", component: Admin },
     { path: "/admin/characters", component: AdminCharacters },
     { path: "/admin/characters/create", component: CreateCharacter },
+    { path: "/admin/chapters", component: AdminChapters },
+    { path: "/admin/chapters/create", component: CreateChapter },
+    { path: "/admin/chapters/.id", component: EditChapter },
     { path: "/characters", component: Characters }
   ]
 });
