@@ -1,3 +1,8 @@
+<template>
+
+  <h1>CALLBACK</h1>
+</template>
+
 <script>
   import axios from 'axios';
 
@@ -25,8 +30,9 @@
       },
 
       getUserInfo(accessToken) {
-        console.log('getUserInfo')
+        alert('getUserInfo')
         const url = 'https://www.googleapis.com/oauth2/v2/userinfo?access_token=' + accessToken;
+        alert(url);
         axios.get(url)
           .then((res) => {
             const data = res.data;
@@ -39,6 +45,7 @@
             };
 
             console.log(this.user); 
+            alert(this.user.firstName)
 
             this.setCookie('peckling', this.user.cookieVal, 365);
             this.$store.dispatch('setUser', this.user);
@@ -60,7 +67,7 @@
     },
 
     created () {
-      console.log('Callback!')
+      alert('Callback!')
       this.getAccessToken();
     }
   }

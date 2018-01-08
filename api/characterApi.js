@@ -28,7 +28,7 @@ let character = (app, db, cloudinary) => {
     const character = new Character({
       name: req.body.character.name,
       description: req.body.character.description,
-      image: req.body.character.file
+      image: req.body.character.image
     });
 
     console.log(character);

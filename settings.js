@@ -14,8 +14,8 @@ const CLOUDINARY_UPLOAD_PRESET = "m3kh8ujo";
 const GOOGLE_CLIENT_ID =
   "117735353954-8cpgiuhrfol5rlunnq99nfrhfe96lu0o.apps.googleusercontent.com";
 const GOOGLE_CALLBACK_URL = isLocal
-  ? "http://localhost:8080/callback/google"
-  : "pip.henrikfogelberg.com/callback/google";
+  ? "http://localhost:8080"
+  : "https://pip.henrikfogelberg.com";
 
 module.exports = {
   CLOUDINARY_ROOT_URL,

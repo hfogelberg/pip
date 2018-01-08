@@ -66,6 +66,7 @@ export default {
           console.log(character)
 
           this.$store.dispatch("createCharacter", character);
+          this.$router.push("/admin/characters");
         })
         .catch((err)=>{
           console.log("Upload error", err)
