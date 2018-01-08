@@ -20,6 +20,10 @@ export default {
     pageThumb: PageThumb
   },
   mounted() {
+    if (!this.$store.getters.token) {
+      this.$router.push("/login");
+    }
+
     this.$store.dispatch('getChapterById', this.$route.params.id)
   },
   computed: {

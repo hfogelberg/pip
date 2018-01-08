@@ -17,6 +17,9 @@
 
   export default {
     mounted() {
+      if (!this.$store.getters.token) {
+        this.$router.push("/login");
+      }
       this.$store.dispatch("getChapters");
     },
     components: {

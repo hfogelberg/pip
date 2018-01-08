@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === "development") {
 
 const API_ROOT_URL = isLocal
   ? "http://localhost:3000/api"
-  : "http://pip.henrikfogelberg.com/api";
+  : "https://pip.henrikfogelberg.com/api";
 
 console.log("API endpoint: " + API_ROOT_URL);
 

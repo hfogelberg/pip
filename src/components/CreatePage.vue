@@ -40,6 +40,10 @@ export default {
   },
 
   mounted() {
+    if (!this.$store.getters.token) {
+      this.$router.push("/login");
+    }
+
     this.chapterId = this.$route.params.id;
     this.$store.dispatch("getNumPages", this.chapterId);
   },

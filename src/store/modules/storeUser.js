@@ -66,14 +66,20 @@ const actions = {
       photo: payload.photo
     };
 
+    console.log("Set User Action", user);
+
+    commit("firstName", user.firstName);
+    commit("lastName", user.lastName);
+    commit("email", user.email);
+    commit("photo", user.photo);
+    commit("token", user.token);
+
+    const url = `${API_ROOT_URL}/user`;
+    console.log(url);
     axios
-      .post(`${API_ROOT_URL}/user`, { user })
+      .post(url, { user })
       .then(res => {
-        commit("firstName", res.data.user.firstName);
-        commit("lastName", res.data.user.lastName);
-        commit("email", res.data.user.email);
-        commit("token", res.data.user.cookieVal);
-        commit("photo", res.data.user.photo);
+        console.log("Post user callback", res.data);
         commit("isAdmin", res.data.user.isAdmin);
       })
       .catch(err => {

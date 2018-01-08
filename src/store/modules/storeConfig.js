@@ -81,8 +81,7 @@ const actions = {
         commit("googleCallbackUrl", res.data.settings.googleCallbackUrl);
         commit(
           "cloudinaryUploadPreset",
-          res.data,
-          settings.cloudinaryUploadPreset
+          res.data.settings.cloudinaryUploadPreset
         );
       })
       .catch(err => {

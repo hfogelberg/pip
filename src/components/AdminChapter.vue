@@ -6,6 +6,11 @@
 
 <script>
 export default {
+  mounted() {
+    if (!this.$store.getters.token) {
+      this.$router.push("/login");
+    }
+  },
   props: ["chapter"]
 }
 </script>
