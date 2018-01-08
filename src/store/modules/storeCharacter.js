@@ -28,6 +28,20 @@ const mutations = {
 };
 
 const actions = {
+  createCharacter({ commit }, character) {
+    console.log("Create Character Action", character);
+    let url = `${API_ROOT_URL}/character`;
+    console.log(url);
+    axios
+      .post(url, { character })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
   getCharacterById({ commit }, id) {
     let url = `${API_ROOT_URL}/characters/${id}`;
 

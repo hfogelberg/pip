@@ -1,6 +1,4 @@
-const { Character } = require("./models/characterModel"),
-  multer = require("multer"),
-  upload = multer({ dest: "./tmp" });
+const { Character } = require("./models/characterModel");
 
 let character = (app, db, cloudinary) => {
   app.get("/api/characters", (req, res) => {
@@ -25,35 +23,26 @@ let character = (app, db, cloudinary) => {
       });
   });
 
-  app.post("/api/character", upload.single("image"), (req, res, next) => {
-    const source = `./uploads/${req.file.filename}`;
-
-    cloudinary.uploader.upload(source, function(result) {
-      if (result.error) {
-        console.log("Cloudinary upload error", result);
-        res.status(500).send();
-      }
-
-      console.log("Cloudinary result", result);
-
-      const fileName = result.public_id + ".jpg";
-
-      const character = new Character({
-        name: req.body.name,
-        description: req.body.description,
-        image: fileName
-      });
-
-      character
-        .save()
-        .then(c => {
-          res.json({ message: "Character saved", character: character });
-        })
-        .catch(e => {
-          console.log(e);
-          res.status(500).send({ message: "Error saving character" });
-        });
+  app.post("/api/character", (req, res) => {
+    console.log("CREATE CHARACTER");
+    const character = new Character({
+      name: req.body.character.name,
+      description: req.body.character.description,
+      image: req.body.character.file
     });
+
+    console.log(character);
+
+    character
+      .save()
+      .then(c => {
+        console.log("Create charater OK!!");
+        res.json({ message: "Character saved", character: character });
+      })
+      .catch(e => {
+        console.log("Error creating character", e);
+        res.status(500).send({ message: "Error saving character" });
+      });
   });
 };
 

@@ -47,14 +47,20 @@ export default {
       fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);
       fd.append("file", this.files[0]);
       const url = this.$store.getters.cloudinaryUploadUrl;
-      // const config = {headers: { "X-Requested-With": "XMLHttpRequest" }};
       const config = {headers: {"Content-Type": "application/x-www-form-urlencoded"}}
-      //"http://res.cloudinary.com/golizzard/image/upload/"
 
       axios.post(url, fd, config)
         .then((res)=>{
-          console.log("Upload OK", res)}
-        )
+          const character = {
+            name: this.name,
+            description: this.description,
+            image: `${res.data.public_id}.${res.data.format}`
+          }
+
+          console.log(character)
+
+          this.$store.dispatch("createCharacter", character);
+        })
         .catch((err)=>{
           console.log("Upload error", err)
         });
