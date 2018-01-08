@@ -6,11 +6,19 @@ const state = {
   cloudinaryRootUrl: "",
   cloudinaryKey: "",
   cloudinarySecret: "",
+  cloudinaryUploadUrl: "",
+  cloudinaryUploadPreset: "",
   googleClientId: "",
   googleCallbackUrl: ""
 };
 
 const getters = {
+  cloudinaryUploadUrl: state => {
+    return state.cloudinaryUploadUrl;
+  },
+  cloudinaryUploadPreset: state => {
+    return state.cloudinaryUploadPreset;
+  },
   cloudinaryRootUrl: state => {
     return state.cloudinaryRootUrl;
   },
@@ -29,8 +37,14 @@ const getters = {
 };
 
 const mutations = {
+  cloudinaryUploadPreset: (state, cloudinaryUploadPreset) => {
+    state.cloudinaryUploadPreset = cloudinaryUploadPreset;
+  },
   cloudinaryRootUrl: (state, cloudinaryRootUrl) => {
     state.cloudinaryRootUrl = cloudinaryRootUrl;
+  },
+  cloudinaryUploadUrl: (state, cloudinaryUploadUrl) => {
+    state.cloudinaryUploadUrl = cloudinaryUploadUrl;
   },
   cloudinaryKey: (state, cloudinaryKey) => {
     state.cloudinaryKey = cloudinaryKey;
@@ -57,9 +71,19 @@ const actions = {
         console.log(res.data);
         commit("cloudinaryRootUrl", res.data.settings.cloudinaryRootUrl);
         commit("cloudinaryKey", res.data.settings.cloudinaryKey);
+        commit("cloudinaryUploadUrl", res.data.settings.cloudinaryUploadUrl);
+        commit(
+          "cloudinaryUploadPreset",
+          res.data.settings.cloudinaryUploadPreset
+        );
         commit("cloudinarySecret", res.data.settings.cloudinarySecret);
         commit("googleClientId", res.data.settings.googleClientId);
         commit("googleCallbackUrl", res.data.settings.googleCallbackUrl);
+        commit(
+          "cloudinaryUploadPreset",
+          res.data,
+          settings.cloudinaryUploadPreset
+        );
       })
       .catch(err => {
         console.log("Server error", err);

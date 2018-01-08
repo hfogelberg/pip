@@ -42,37 +42,54 @@ export default {
       console.log("Upload");
       this.files = e.target.files;
     },
-    save(e) {
-      console.log("CREATE CHARACTER");
-      const url = "https://api.cloudinary.com/v1_1/golizzard/image/upload";
-      let reader = new FileReader();
+    save() {
+      const fd = new FormData();
+      fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);
+      fd.append("file", this.files[0]);
+      const url = this.$store.getters.cloudinaryUploadUrl;
+      // const config = {headers: { "X-Requested-With": "XMLHttpRequest" }};
+      const config = {headers: {"Content-Type": "application/x-www-form-urlencoded"}}
+      //"http://res.cloudinary.com/golizzard/image/upload/"
 
-      reader.readAsDataURL(this.files[0]);
-      reader.onload = (e) => {
-        this.imageSrc = e.target.result;
-      };
-      const file = this.imageSrc;
-      const api_key = "925374862654622";
-      const public_id = "sample_image";
-      const timestamp = Date.now();
-      const str = "public_id=sample_image&timestamp=" + timestamp
-      const signature = sha1(str);
-
-      axios.post(url, {
-        file,
-        api_key, 
-        timestamp,
-        public_id,
-        signature,
-        upload_preset: "pip"
-      })
-      .then((res)=>{
-        console.log("CLOUNDINAR RESPONSE", res);
-      })
-      .catch((err)=>{
-        console.log("CLOUDINARY ERROR", err);
-      });
+      axios.post(url, fd, config)
+        .then((res)=>{
+          console.log("Upload OK", res)}
+        )
+        .catch((err)=>{
+          console.log("Upload error", err)
+        });
     }
+    // save(e) {
+    //   console.log("CREATE CHARACTER");
+    //   const url = "https://api.cloudinary.com/v1_1/golizzard/image/upload";
+    //   let reader = new FileReader();
+
+    //   reader.readAsDataURL(this.files[0]);
+    //   reader.onload = (e) => {
+    //     this.imageSrc = e.target.result;
+    //   };
+    //   const file = this.imageSrc;
+    //   const api_key = "925374862654622";
+    //   const public_id = "sample_image";
+    //   const timestamp = Date.now();
+    //   const str = "public_id=sample_image&timestamp=" + timestamp
+    //   const signature = sha1(str);
+
+    //   axios.post(url, {
+    //     file,
+    //     api_key, 
+    //     timestamp,
+    //     public_id,
+    //     signature,
+    //     upload_preset: "pip"
+    //   })
+    //   .then((res)=>{
+    //     console.log("CLOUNDINAR RESPONSE", res);
+    //   })
+    //   .catch((err)=>{
+    //     console.log("CLOUDINARY ERROR", err);
+    //   });
+    // },
     // save(e) {
     //   console.log("Save");
 
