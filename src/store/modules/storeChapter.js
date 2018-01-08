@@ -89,6 +89,30 @@ const actions = {
 
   nextPage({ commit }) {},
 
+  createChapter({ commit }, chapter) {
+    let url = `${API_ROOT_URL}/chapter`;
+    axios
+      .post(url, chapter)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
+  createPage({ commit }, page) {
+    let url = `${API_ROOT_URL}/page`;
+    axios
+      .post(url, page)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
   getChapterNames({ commit }) {
     let url = `${API_ROOT_URL}/chapternames`;
     axios

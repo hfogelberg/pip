@@ -56,56 +56,31 @@ export default {
       this.files = e.target.files;
     },
 
-    save(e) {
-      console.log("SAVE");
+    save() {
+      const fd = new FormData();
+      fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);
+      fd.append("file", this.files[0]);
+      const url = this.$store.getters.cloudinaryUploadUrl;
+      const config = {headers: {"Content-Type": "application/x-www-form-urlencoded"}}
 
-      const url = "https://api.cloudinary.com/v1_1/golizzard/image/upload";
-      const file = this.file
-      const api_key = "925374862654622";
-      const timeStamp = Date.now();
-      const str = "public_id=sample_image&timestamp=" + timestamp
-      const signature = crypto.createHash('sha1').update(str).digest('hex');
-      axios.post(url, {
-        file,
-        api_key, 
-        signature
-      })
-      .then((res)=>{
-        console.log("CLOUNDINAR RESPONSE", res);
-      })
-      .catch((err)=>{
-        console.log("CLOUDINARY ERROR", err);
-      });
+      axios.post(url, fd, config)
+        .then((res)=>{
+          const character = {
+            chapterId: this.chapterId,
+            text: this.text,
+            pageNumber: this.$store.getters.numPages + 1,
+            image: `${res.data.public_id}.${res.data.format}`
+          }
+
+          console.log(character)
+
+          this.$store.dispatch("createPage", character);
+        })
+        .catch((err)=>{
+          console.log("Upload error", err)
+        });
+
     }
-
-    // save(e) {
-    //   console.log("Save");
-
-    //   // File
-    //   let reader = new FileReader();
-    //   let chapterId = this.chapterId;
-
-    //   reader.readAsDataURL(this.files[0]);
-    //   reader.onload = (e) => {
-    //     this.imageSrc = e.target.result;
-    //   };
-
-    //   let vm = this;
-    //   let data = new FormData();
-    //   data.append('image', this.files[0])
-    //   data.append("text", this.text);
-    //   data.append("chapterId", this.chapterId);
-    //   data.append("pageNumber", this.pageNumber)
-
-    //   axios
-    //     .post("http://localhost:3000/api/page", data )
-    //     .then(function(res) {
-    //        vm.$router.push("/admin/chapters/" + chapterId);
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error);
-    //     });
-    // }
   }
 }
 

@@ -1,6 +1,4 @@
-const { Chapter } = require("./models/chapterModel"),
-  multer = require("multer"),
-  upload = multer({ dest: "./tmp" });
+const { Chapter } = require("./models/chapterModel");
 
 let chapter = (app, db, cloudinary) => {
   app.get("/api/numpages/:id", (req, res) => {
@@ -17,33 +15,24 @@ let chapter = (app, db, cloudinary) => {
         res.status(500).send({ err });
       });
   }),
-    app.post("/api/page", upload.single("image"), (req, res, next) => {
-      const source = `./uploads/${req.file.filename}`;
+    app.post("/api/page", (req, res) => {
+      console.log(req.body);
+      const chapterId = req.body.chapterId;
+      const page = {
+        text: req.body.text,
+        pageNumber: req.body.pageNumber,
+        image: req.body.file
+      };
 
-      cloudinary.uploader.upload(source, function(result) {
-        if (result.error) {
-          console.log("Cloudinary upload error", result);
-          res.status(500).send();
-        }
-
-        const fileName = result.public_id + ".jpg";
-        const chapterId = req.body.chapterId;
-        const page = {
-          text: req.body.text,
-          pageNumber: req.body.pageNumber,
-          image: fileName
-        };
-
-        Chapter.findByIdAndUpdate(chapterId, { $push: { pages: page } })
-          .then(result => {
-            res.setHeader("Content-Type", "application/json");
-            res.send(JSON.stringify({ status: "OK" }));
-          })
-          .catch(err => {
-            console.log("Error adding page", err);
-            res.status(404).send();
-          });
-      });
+      Chapter.findByIdAndUpdate(chapterId, { $push: { pages: page } })
+        .then(result => {
+          res.setHeader("Content-Type", "application/json");
+          res.send(JSON.stringify({ status: "OK" }));
+        })
+        .catch(err => {
+          console.log("Error adding page", err);
+          res.status(404).send();
+        });
     });
 
   app.get("/api/chapters/:id", (req, res) => {
@@ -85,32 +74,21 @@ let chapter = (app, db, cloudinary) => {
       });
   });
 
-  app.post("/api/chapter", upload.single("image"), (req, res, next) => {
-    const source = `./uploads/${req.file.filename}`;
-
-    cloudinary.uploader.upload(source, function(result) {
-      if (result.error) {
-        console.log("Cloudinary upload error", result);
-        res.status(500).send();
-      }
-
-      const fileName = result.public_id + ".jpg";
-
-      const chapter = new Chapter({
-        title: req.body.title,
-        image: fileName
-      });
-
-      chapter
-        .save()
-        .then(c => {
-          res.json({ message: "Chapter saved", chapter: chapter });
-        })
-        .catch(e => {
-          console.log(e);
-          res.status(500).send({ message: "Error saving chapter" });
-        });
+  app.post("/api/chapter", (req, res) => {
+    const chapter = new Chapter({
+      title: req.body.title,
+      image: req.body.file
     });
+
+    chapter
+      .save()
+      .then(c => {
+        res.json({ message: "Chapter saved", chapter: chapter });
+      })
+      .catch(e => {
+        console.log(e);
+        res.status(500).send({ message: "Error saving chapter" });
+      });
   });
 };
 

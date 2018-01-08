@@ -65,63 +65,6 @@ export default {
           console.log("Upload error", err)
         });
     }
-    // save(e) {
-    //   console.log("CREATE CHARACTER");
-    //   const url = "https://api.cloudinary.com/v1_1/golizzard/image/upload";
-    //   let reader = new FileReader();
-
-    //   reader.readAsDataURL(this.files[0]);
-    //   reader.onload = (e) => {
-    //     this.imageSrc = e.target.result;
-    //   };
-    //   const file = this.imageSrc;
-    //   const api_key = "925374862654622";
-    //   const public_id = "sample_image";
-    //   const timestamp = Date.now();
-    //   const str = "public_id=sample_image&timestamp=" + timestamp
-    //   const signature = sha1(str);
-
-    //   axios.post(url, {
-    //     file,
-    //     api_key, 
-    //     timestamp,
-    //     public_id,
-    //     signature,
-    //     upload_preset: "pip"
-    //   })
-    //   .then((res)=>{
-    //     console.log("CLOUNDINAR RESPONSE", res);
-    //   })
-    //   .catch((err)=>{
-    //     console.log("CLOUDINARY ERROR", err);
-    //   });
-    // },
-    // save(e) {
-    //   console.log("Save");
-
-    //   // File
-    //   let reader = new FileReader();
-
-    //   reader.readAsDataURL(this.files[0]);
-    //   reader.onload = (e) => {
-    //     this.imageSrc = e.target.result;
-    //   };
-
-    //   let vm = this;
-    //   let data = new FormData();
-    //   data.append('image', this.files[0])
-    //   data.append("name", this.name);
-    //   data.append("description", this.description);
-
-    //   axios
-    //     .post("http://localhost:3000/api/character", data )
-    //     .then(function(res) {
-    //        vm.$router.push('/admin/characters');
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error);
-    //     });
-    // }
   }
 }
 

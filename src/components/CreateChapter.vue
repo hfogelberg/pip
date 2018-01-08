@@ -5,7 +5,7 @@
       <ul class="flex-outer">
         <li>
           <label for="title">Rubrik</label>
-          <input type="text" name="title" id="title" v-model="name">
+          <input type="text" name="title" id="title" v-model="title">
         </li>
         <li>
           <label for="image">Bild</label>
@@ -37,29 +37,26 @@ export default {
       console.log("Upload");
       this.files = e.target.files;
     },
-    save(e) {
-      console.log("Save");
+    save() {
+      const fd = new FormData();
+      fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);
+      fd.append("file", this.files[0]);
+      const url = this.$store.getters.cloudinaryUploadUrl;
+      const config = {headers: {"Content-Type": "application/x-www-form-urlencoded"}}
 
-      // File
-      let reader = new FileReader();
+      axios.post(url, fd, config)
+        .then((res)=>{
+          const chapter = {
+            title: this.title,
+            image: `${res.data.public_id}.${res.data.format}`
+          }
 
-      reader.readAsDataURL(this.files[0]);
-      reader.onload = (e) => {
-        this.imageSrc = e.target.result;
-      };
+          console.log(chapter)
 
-      let vm = this;
-      let data = new FormData();
-      data.append('image', this.files[0])
-      data.append("title", this.name);
-
-      axios
-        .post("http://localhost:3000/api/chapter", data )
-        .then(function(res) {
-           vm.$router.push('/admin/chapters');
+          this.$store.dispatch("createChapter", chapter);
         })
-        .catch(function(error) {
-          console.log(error);
+        .catch((err)=>{
+          console.log("Upload error", err)
         });
     }
   }
