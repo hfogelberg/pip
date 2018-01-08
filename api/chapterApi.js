@@ -1,6 +1,6 @@
-const { Chapter } = require("../models/chapterModel"),
+const { Chapter } = require("./models/chapterModel"),
   multer = require("multer"),
-  upload = multer({ dest: "uploads/" });
+  upload = multer({ dest: "./tmp" });
 
 let chapter = (app, db, cloudinary) => {
   app.get("/api/numpages/:id", (req, res) => {

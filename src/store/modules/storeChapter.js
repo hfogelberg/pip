@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { API_ROOT_URL } from "../../../config";
+import { API_ROOT_URL } from "../../settings";
 import axios from "axios";
 
 const state = {
@@ -60,7 +60,6 @@ const mutations = {
   },
 
   nextPage: state => {
-    console.log("Next Page mutation");
     state.pageId = state.pageId + 1;
   },
 
@@ -81,23 +80,17 @@ const mutations = {
   },
 
   chapters: (state, chapters) => {
-    console.log("Mutation called", chapters);
     state.chapters = chapters;
   }
 };
 
 const actions = {
-  firstPage({ commit }) {
-    commit("resetPage");
-  },
+  firstPage({ commit }) {},
 
-  nextPage({ commit }) {
-    commit("nextPage");
-  },
+  nextPage({ commit }) {},
 
   getChapterNames({ commit }) {
-    console.log("Get Chapter names");
-    let url = `http://localhost:3000/api/chapternames`;
+    let url = `${API_ROOT_URL}/chapternames`;
     axios
       .get(url)
       .then(res => {
@@ -109,7 +102,7 @@ const actions = {
   },
 
   getChapterById({ commit }, id) {
-    let url = `http://localhost:3000/api/chapters/${id}`;
+    let url = `${API_ROOT_URL}/chapters/${id}`;
     axios
       .get(url)
       .then(res => {
@@ -122,7 +115,7 @@ const actions = {
   },
 
   getNumPages({ commit }, id) {
-    let url = `http://localhost:3000/api/numpages/${id}`;
+    let url = `${API_ROOT_URL}/numpages/${id}`;
     axios
       .get(url)
       .then(res => {
@@ -134,13 +127,11 @@ const actions = {
   },
 
   getChapters({ commit }) {
-    console.log("Get chapters");
-    let url = "http://localhost:3000/api/chapters";
-
+    let url = `${API_ROOT_URL}/chapters`;
+    console.log(url);
     axios
       .get(url)
       .then(res => {
-        console.log("Chapters returned", res.data.chapters);
         commit("chapters", res.data.chapters);
       })
       .catch(err => {

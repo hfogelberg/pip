@@ -1,4 +1,4 @@
-const { User } = require("../models/userModel");
+const { User } = require("./models/userModel");
 
 let user = (app, db) => {
   app.post("/api/user", (req, res) => {

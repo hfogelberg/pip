@@ -1,12 +1,12 @@
-var express = require("express"),
+const express = require("express"),
   app = express(),
   cors = require("cors"),
   bodyParser = require("body-parser"),
-  db = require("./connection"),
+  db = require("./api/connection"),
   { api } = require("./api/api"),
   cloudinary = require("cloudinary"),
-  settings = require("../config.js"),
-  port = 3000;
+  path = require("path"),
+  settings = require("./settings.js");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -16,6 +16,10 @@ app.use(
   })
 );
 app.use("/", express.static(__dirname + "/"));
+
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname + "/index.html"));
+});
 
 cloudinary.config({
   cloud_name: settings.CLOUDINARY_CLOUD_NAME,
@@ -32,7 +36,8 @@ app.use((req, res, next) => {
   next();
 });
 
-console.log(`Will run on port ${port}`);
+let port = settings.PORT;
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

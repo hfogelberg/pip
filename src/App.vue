@@ -4,6 +4,15 @@
   </div>
 </template>
 
+<script>
+export default {
+  mounted() {
+    console.log("App mounted")
+    this.$store.dispatch("getConfig");
+  }
+}
+</script>
+
 <style lang="scss">
 @import '/assets/styles/style.scss'
 </style>

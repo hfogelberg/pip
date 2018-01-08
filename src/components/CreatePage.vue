@@ -1,19 +1,22 @@
 <template>
   <div>
+    <h1>Ny sida</h1>
     <form>
       <ul class="flex-outer">
-        <li>
-          <label for="title">Namn</label>
-          <input type="text" name="name" id="name" v-model="name">
-        </li>
         <li>
           <label for="image">Bild</label>
           <input @change="uploadImage" type="file" name="photo" accept="image/*">
         </li>
         <li>
-          <label for="comment">BesKrivning</label>
-          <textarea name="description" rows="4" id="description" cols="80" v-model="description"></textarea>
+          <label for="text">Text</label>
+          <textarea name="text" rows="4" id="text" cols="80" v-model="text"></textarea>
         </li>
+
+        <li>
+          <label for="image">Sidnummer</label>
+          <input type="text" name="pageNumber" id="pageNumber" v-model="pageNumber">
+        </li>
+
         <li>
           <button type="button" name="button" id="save" @click="save">Spara</button>
         </li>
@@ -23,8 +26,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import sha1 from "sha1";
+import axios from 'axios';
 
 export default {
   data() {
@@ -32,8 +34,19 @@ export default {
       imageUrl: "",
       imageSrc: "",
       files: [],
-      name: "",
-      description: ""
+      text: "",
+      chapterId: ""
+    }
+  },
+
+  mounted() {
+    this.chapterId = this.$route.params.id;
+    this.$store.dispatch("getNumPages", this.chapterId);
+  },
+
+  computed: {
+    pageNumber() {
+      return this.$store.getters.numPages + 1;
     }
   },
 
@@ -42,29 +55,20 @@ export default {
       console.log("Upload");
       this.files = e.target.files;
     },
+
     save(e) {
-      console.log("CREATE CHARACTER");
+      console.log("SAVE");
+
       const url = "https://api.cloudinary.com/v1_1/golizzard/image/upload";
-      let reader = new FileReader();
-
-      reader.readAsDataURL(this.files[0]);
-      reader.onload = (e) => {
-        this.imageSrc = e.target.result;
-      };
-      const file = this.imageSrc;
+      const file = this.file
       const api_key = "925374862654622";
-      const public_id = "sample_image";
-      const timestamp = Date.now();
+      const timeStamp = Date.now();
       const str = "public_id=sample_image&timestamp=" + timestamp
-      const signature = sha1(str);
-
+      const signature = crypto.createHash('sha1').update(str).digest('hex');
       axios.post(url, {
         file,
         api_key, 
-        timestamp,
-        public_id,
-        signature,
-        upload_preset: "pip"
+        signature
       })
       .then((res)=>{
         console.log("CLOUNDINAR RESPONSE", res);
@@ -73,11 +77,13 @@ export default {
         console.log("CLOUDINARY ERROR", err);
       });
     }
+
     // save(e) {
     //   console.log("Save");
 
     //   // File
     //   let reader = new FileReader();
+    //   let chapterId = this.chapterId;
 
     //   reader.readAsDataURL(this.files[0]);
     //   reader.onload = (e) => {
@@ -87,13 +93,14 @@ export default {
     //   let vm = this;
     //   let data = new FormData();
     //   data.append('image', this.files[0])
-    //   data.append("name", this.name);
-    //   data.append("description", this.description);
+    //   data.append("text", this.text);
+    //   data.append("chapterId", this.chapterId);
+    //   data.append("pageNumber", this.pageNumber)
 
     //   axios
-    //     .post("http://localhost:3000/api/character", data )
+    //     .post("http://localhost:3000/api/page", data )
     //     .then(function(res) {
-    //        vm.$router.push('/admin/characters');
+    //        vm.$router.push("/admin/chapters/" + chapterId);
     //     })
     //     .catch(function(error) {
     //       console.log(error);
@@ -107,3 +114,4 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/style.scss'
 </style>
+

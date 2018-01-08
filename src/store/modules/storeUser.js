@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { API_ROOT_URL } from "../../../config";
+import { API_ROOT_URL } from "../../settings";
 import axios from "axios";
 
 const state = {
@@ -66,13 +66,9 @@ const actions = {
       photo: payload.photo
     };
 
-    console.log("Calling Post user", user);
-
     axios
       .post(`${API_ROOT_URL}/user`, { user })
       .then(res => {
-        console.log("Server response", res);
-
         commit("firstName", res.data.user.firstName);
         commit("lastName", res.data.user.lastName);
         commit("email", res.data.user.email);

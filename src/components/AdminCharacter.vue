@@ -7,22 +7,13 @@
     <td>
       {{character.description}}
     </td>
-    <td><button @click="edit">Ändra</button></td>
-    <td><button @click="remove">Ta bort</button></td>
+    <td>Ändra (skall vara en länk här)</td>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["character"],
-  methods: {
-    edit() {
-
-    },
-    remove(){
-
-    }
-  }
+  props: ["character"]
 }
 </script>
 
