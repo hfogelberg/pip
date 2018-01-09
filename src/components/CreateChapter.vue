@@ -60,6 +60,7 @@ export default {
           console.log(chapter)
 
           this.$store.dispatch("createChapter", chapter);
+          this.$router.push("/admin/chapters");
         })
         .catch((err)=>{
           console.log("Upload error", err)

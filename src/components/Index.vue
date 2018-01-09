@@ -30,13 +30,19 @@
         console.log('Created', url);
         const params = url.split('&');
 
+        let accessToken = ""
+
         params.map((param) => {
           if (param.includes('access_token')) {
             const t = param.split('=');
-            const accessToken = t[1];
+            accessToken = t[1];
             this.getUserInfo(accessToken);
           }
         })
+
+        if (accessToken === "") {
+          this.$router.push("/login");
+        }
       },
 
       getUserInfo(accessToken) {
@@ -72,10 +78,6 @@
 
     created () {
       this.getAccessToken();
-
-      if (!this.$store.getters.token) {
-        this.$router.push("/login");
-      }
     }
   }
 </script>
