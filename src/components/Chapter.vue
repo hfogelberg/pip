@@ -1,6 +1,7 @@
 <template>
   <div class="chapter">
     <h1>{{chapter.title}}</h1>
+    <img class= 'character' :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + chapter.image" v-bind:alt="chapter.name">
 
     <page></page>
     <div v-if="isLastPage">

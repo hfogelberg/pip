@@ -2,7 +2,13 @@
   <div>
     <h1>{{chapter.title}}</h1>
 
-    <router-link :to="'/admin/chapters/' + chapter._id + '/pages/add'">Ny sida</router-link>
+    <div>
+      <img class= 'character' :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + chapter.image" v-bind:alt="chapter.name">
+    </div>
+
+    <div>
+      <router-link :to="'/admin/chapters/' + chapter._id + '/pages/add'">Ny sida</router-link>
+    </div>
 
     <table>
       <tr v-for="page in chapter.pages">
