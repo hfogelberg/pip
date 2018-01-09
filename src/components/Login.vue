@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Login</h1>
-    <a v-bind:href="this.uri">Signin</a>
+    <h2>Inloggning</h2>
+    <a v-bind:href="this.uri"><img src="../assets/img/google-login.svg"></a>
   </div>
 </template>
 
