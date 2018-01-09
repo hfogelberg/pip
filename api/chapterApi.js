@@ -21,7 +21,7 @@ let chapter = (app, db, cloudinary) => {
       const page = {
         text: req.body.text,
         pageNumber: req.body.pageNumber,
-        image: req.body.file
+        image: req.body.image
       };
 
       Chapter.findByIdAndUpdate(chapterId, { $push: { pages: page } })
@@ -77,7 +77,7 @@ let chapter = (app, db, cloudinary) => {
   app.post("/api/chapter", (req, res) => {
     const chapter = new Chapter({
       title: req.body.title,
-      image: req.body.file
+      image: req.body.image
     });
 
     chapter

@@ -4,7 +4,8 @@ if (process.env.NODE_ENV == "development") {
 }
 
 const PORT = isLocal ? 3000 : 80;
-const CLOUDINARY_ROOT_URL = "http://res.cloudinary.com/golizzard/image/upload/";
+const CLOUDINARY_ROOT_URL =
+  "https://res.cloudinary.com/golizzard/image/upload/";
 const CLOUDINARY_UPLOAD_URL =
   "https://api.cloudinary.com/v1_1/golizzard/upload";
 const CLOUDINARY_CLOUD_NAME = "golizzard";
