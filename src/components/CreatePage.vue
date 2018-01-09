@@ -34,8 +34,7 @@ export default {
       imageUrl: "",
       imageSrc: "",
       files: [],
-      text: "",
-      chapterId: ""
+      text: ""
     }
   },
 
@@ -43,9 +42,11 @@ export default {
     if (!this.$store.getters.token) {
       this.$router.push("/login");
     }
+  },
 
-    this.chapterId = this.$route.params.id;
-    this.$store.dispatch("getNumPages", this.chapterId);
+  created() {
+    const chapterId = this.$route.params.id;
+    this.$store.dispatch("getNumPages", chapterId);
   },
 
   computed: {
@@ -66,11 +67,12 @@ export default {
       fd.append("file", this.files[0]);
       const url = this.$store.getters.cloudinaryUploadUrl;
       const config = {headers: {"Content-Type": "application/x-www-form-urlencoded"}}
+      const chapterId = this.$route.params.id;
 
       axios.post(url, fd, config)
         .then((res)=>{
           const page = {
-            chapterId: this.chapterId,
+            chapterId: chapterId,
             text: this.text,
             pageNumber: this.$store.getters.numPages + 1,
             image: `${res.data.public_id}.${res.data.format}`

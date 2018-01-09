@@ -18,6 +18,8 @@ export default {
     if (!this.$store.getters.token) {
       this.$router.push("/login");
     }
+  },
+  created() {
     this.$store.dispatch("getChapterNames");
   },
   computed: {

@@ -1,17 +1,18 @@
 <template>
   <div>
-    <h1>{{chapter.title}}</h1>
+    <h2>{{chapter.title}}</h2>
 
     <div>
       <img class= 'character' :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + chapter.image" v-bind:alt="chapter.name">
     </div>
 
     <div>
-      <router-link :to="'/admin/chapters/' + chapter._id + '/pages/add'">Ny sida</router-link>
+      <router-link :to="'/admin/addPage/' + chapter._id ">Ny sida</router-link><br>
+      <router-link to="/admin/chapters">Tillbaks</router-link>
     </div>
 
     <table>
-      <tr v-for="page in chapter.pages">
+      <tr v-for="page in pages">
         <pageThumb :page="page"></pageThumb>
       </tr>
     </table>
@@ -25,16 +26,20 @@ export default {
   components: {
     pageThumb: PageThumb
   },
+  created() {
+    this.$store.dispatch("getChapterById", this.$route.params.id)
+  },
   mounted() {
     if (!this.$store.getters.token) {
       this.$router.push("/login");
     }
-
-    this.$store.dispatch('getChapterById', this.$route.params.id)
   },
   computed: {
     chapter() {
       return this.$store.getters.chapter;
+    },
+    pages() {
+      return this.$store.getters.pages;
     }
   }
 }

@@ -75,6 +75,10 @@ const mutations = {
     state.chapter = chapter;
   },
 
+  chapterTitle: (state, title) => {
+    state.chapterTitle = title;
+  },
+
   pages: (state, pages) => {
     state.pages = pages;
   },
@@ -106,10 +110,10 @@ const actions = {
     axios
       .post(url, page)
       .then(res => {
-        console.log(res);
+        console.log("Creacte page response", res);
       })
       .catch(err => {
-        console.log(err);
+        console.log("Create page error", err);
       });
   },
 
@@ -126,10 +130,12 @@ const actions = {
   },
 
   getChapterById({ commit }, id) {
+    console("Get Chapter by Id " + id);
     let url = `${API_ROOT_URL}/chapters/${id}`;
     axios
       .get(url)
       .then(res => {
+        console.log("GET CHAPTER BY ID", res);
         commit("chapter", res.data.chapter);
         commit("pages", res.data.chapter.pages);
       })
