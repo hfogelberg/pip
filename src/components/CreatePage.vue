@@ -69,16 +69,17 @@ export default {
 
       axios.post(url, fd, config)
         .then((res)=>{
-          const character = {
+          const page = {
             chapterId: this.chapterId,
             text: this.text,
             pageNumber: this.$store.getters.numPages + 1,
             image: `${res.data.public_id}.${res.data.format}`
           }
 
-          console.log(character)
+          console.log(page)
 
-          this.$store.dispatch("createPage", character);
+          this.$store.dispatch("createPage", page);
+          this.$router.push("/admin/chapters/" + this.chapterId);
         })
         .catch((err)=>{
           console.log("Upload error", err)
