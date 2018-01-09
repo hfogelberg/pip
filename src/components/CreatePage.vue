@@ -81,7 +81,7 @@ export default {
           console.log(page)
 
           this.$store.dispatch("createPage", page);
-          this.$router.push("/admin/chapters/" + this.chapterId);
+          this.$router.push("/admin/editchapter");
         })
         .catch((err)=>{
           console.log("Upload error", err)

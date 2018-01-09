@@ -11,6 +11,10 @@
       <router-link to="/admin/chapters">Tillbaks</router-link>
     </div>
 
+    <div>
+      <button @click="refresh">Refresh</button>
+    </div>
+
     <table>
       <tr v-for="page in pages">
         <pageThumb :page="page"></pageThumb>
@@ -26,14 +30,22 @@ export default {
   components: {
     pageThumb: PageThumb
   },
-  created() {
-    this.$store.dispatch("getChapterById", this.$route.params.id)
-  },
+
   mounted() {
     if (!this.$store.getters.token) {
       this.$router.push("/login");
     }
+    
+    this.$store.dispatch("getChapterById")
   },
+
+  methods: {
+    refresh() {
+      console.log("Refresh")
+      this.$store.dispatch("getChapterById")
+    }
+  },
+
   computed: {
     chapter() {
       return this.$store.getters.chapter;

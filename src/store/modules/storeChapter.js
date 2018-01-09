@@ -8,8 +8,9 @@ const state = {
   numPages: 0,
   chapterNames: [],
   pages: [],
-  pageId: 0,
-  currentPage: {}
+  pageNumber: 0,
+  currentPage: {},
+  currentChapter: {}
 };
 
 const getters = {
@@ -21,6 +22,10 @@ const getters = {
     }
   },
 
+  currentChapter: state => {
+    return state.currentChapter;
+  },
+
   currentPage: state => {
     return state.pages[state.pageId];
   },
@@ -29,8 +34,8 @@ const getters = {
     return state.pages;
   },
 
-  pageId: state => {
-    return state.pageId;
+  pageNumber: state => {
+    return state.pageNumber;
   },
 
   chapterNames: state => {
@@ -52,15 +57,15 @@ const getters = {
 
 const mutations = {
   resetPage: state => {
-    state.pageId = 0;
+    state.pageNumber = 0;
   },
 
   previousPage: state => {
-    state.pageId = state.pageId - 1;
+    state.pageNumber = state.pageNumber - 1;
   },
 
   nextPage: state => {
-    state.pageId = state.pageId + 1;
+    state.pageNumber = state.pageNumber + 1;
   },
 
   chapterNames: (state, chapterNames) => {
@@ -85,6 +90,10 @@ const mutations = {
 
   chapters: (state, chapters) => {
     state.chapters = chapters;
+  },
+
+  currentChapter: (state, currentChapter) => {
+    state.currentChapter = currentChapter;
   }
 };
 
@@ -92,6 +101,11 @@ const actions = {
   firstPage({ commit }) {},
 
   nextPage({ commit }) {},
+
+  setCurrentChapter({ commit }, currentChapter) {
+    console.log("Setting current chapter", currentChapter);
+    commit("currentChapter", currentChapter);
+  },
 
   createChapter({ commit }, chapter) {
     let url = `${API_ROOT_URL}/chapter`;
@@ -129,8 +143,9 @@ const actions = {
       });
   },
 
-  getChapterById({ commit }, id) {
-    console("Get Chapter by Id " + id);
+  getChapterById({ commit }) {
+    const id = state.currentChapter._id;
+    console.log("Get Chapter by Id " + id);
     let url = `${API_ROOT_URL}/chapters/${id}`;
     axios
       .get(url)

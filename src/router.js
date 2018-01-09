@@ -24,7 +24,7 @@ const router = new VueRouter({
     { path: "/admin/characters/create", component: CreateCharacter },
     { path: "/admin/chapters", component: AdminChapters },
     { path: "/admin/chapters/create", component: CreateChapter },
-    { path: "/admin/chapters/:id", component: EditChapter },
+    { path: "/admin/editchapter", component: EditChapter },
     { path: "/characters", component: Characters },
     { path: "/admin/addPage/:id", component: CreatePage },
     { path: "/chapters", component: Chapters },
