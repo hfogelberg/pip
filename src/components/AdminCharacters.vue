@@ -43,7 +43,6 @@
 </template>
 
 <script>
-  import AdminCharacter from "./AdminCharacter";
   import {mapGetters} from "vuex";
 
   export default {
@@ -55,10 +54,6 @@
       refresh() {
         this.$store.dispatch("getCharacters");
       }
-    },
-
-    components: {
-      adminCharacter: AdminCharacter
     },
 
     computed: {
