@@ -12,6 +12,7 @@
 
 <script>
   import CharacterThumb from "./CharacterThumb";
+  import {mapGetters} from 'vuex';
 
   export default {
     created() {
@@ -21,9 +22,7 @@
       characterThumb: CharacterThumb
     },
     computed: {
-      characters() {
-        return this.$store.getters.characters;
-      }
+      ...mapGetters(['characters'])
     }
   }
 </script>

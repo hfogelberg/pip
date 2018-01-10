@@ -44,9 +44,6 @@
               photo: data.picture
             };
 
-            console.log(this.user); 
-            alert(this.user.firstName)
-
             this.setCookie('peckling', this.user.cookieVal, 365);
             this.$store.dispatch('setUser', this.user);
             this.$router.push("/");

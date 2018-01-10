@@ -11,10 +11,6 @@
       <router-link to="/admin/chapters">Tillbaks</router-link>
     </div>
 
-    <div>
-      <button @click="refresh">Refresh</button>
-    </div>
-
     <table>
       <tr v-for="page in pages">
         <pageThumb :page="page"></pageThumb>
@@ -25,6 +21,7 @@
 
 <script>
 import PageThumb from "./PageThumb";
+import {mapGetters} from 'vuex';
 
 export default {
   components: {
@@ -35,20 +32,8 @@ export default {
     this.$store.dispatch("getChapterById")
   },
 
-  methods: {
-    refresh() {
-      console.log("Refresh")
-      this.$store.dispatch("getChapterById")
-    }
-  },
-
   computed: {
-    chapter() {
-      return this.$store.getters.chapter;
-    },
-    pages() {
-      return this.$store.getters.pages;
-    }
+    ...mapGetters(['chapter', 'pages'])
   }
 }
 </script>

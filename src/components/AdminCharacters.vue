@@ -14,18 +14,19 @@
 
 <script>
   import AdminCharacter from "./AdminCharacter";
+  import {mapGetters} from 'vuex';
 
   export default {
     created() {
       this.$store.dispatch("getCharacters");
     },
+
     components: {
       adminCharacter: AdminCharacter
     },
+
     computed: {
-      characters() {
-        return this.$store.getters.characters;
-      }
+      ...mapGetters(['characters'])
     }
   }
 </script>

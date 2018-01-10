@@ -16,7 +16,6 @@
     "cloudinary": "^1.9.1",
     "cors": "^2.8.4",
     "mongoose": "^4.13.6",
-    "sha1": "^1.1.1",
     "validator": "^9.2.0",
     "vue": "^2.4.4",
     "vue-router": "^3.0.1",

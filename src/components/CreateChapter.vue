@@ -37,6 +37,7 @@ export default {
       console.log("Upload");
       this.files = e.target.files;
     },
+    
     save() {
       const fd = new FormData();
       fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);

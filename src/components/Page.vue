@@ -11,11 +11,11 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
   computed: {
-    page() {
-      return this.$store.getters.currentPage;
-    }
+    ...mapGetters(['currentPage'])
   }
 }
 </script>

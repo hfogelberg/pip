@@ -24,7 +24,6 @@
 
 <script>
 import axios from "axios";
-import sha1 from "sha1";
 
 export default {
   data() {
@@ -42,6 +41,7 @@ export default {
       console.log("Upload");
       this.files = e.target.files;
     },
+    
     save() {
       const fd = new FormData();
       fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);

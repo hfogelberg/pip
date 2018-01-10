@@ -15,6 +15,7 @@
 
 <script>
 import Page from "./Page";
+import {mapGetters} from 'vuex';
 
 export default {
   components: {
@@ -32,17 +33,7 @@ export default {
   },
 
   computed: {
-    isLastPage() {
-      return this.$store.getters.isLastPage;
-    },
-
-    currentPage() {
-      return this.$store.getters.currentPage;
-    },
-
-    chapter() {
-      return this.$store.getters.chapter;
-    }
+    ...mapGetters(['isLastPage', 'currentPage', 'chapter'])
   }
 }
 </script>

@@ -14,6 +14,7 @@
 
 <script>
   import AdminChapter from "./AdminChapter";
+  import {mapGetters} from 'vuex';
 
   export default {
     created() {
@@ -23,9 +24,7 @@
       adminChapter: AdminChapter
     },
     computed: {
-      chapters() {
-        return this.$store.getters.chapters;
-      }
+    ...mapGetters(['chapters'])
     }
   }
 </script>
