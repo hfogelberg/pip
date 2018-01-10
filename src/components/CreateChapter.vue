@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
@@ -67,5 +67,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/style.scss'
+@import "../assets/styles/style.scss";
 </style>

@@ -17,5 +17,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/style.scss'
+@import "../assets/styles/style.scss";
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 </style>

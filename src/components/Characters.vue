@@ -28,7 +28,7 @@
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/style.scss';
+@import "../assets/styles/style.scss";
 
 ul.chars-cards {
   list-style: none;

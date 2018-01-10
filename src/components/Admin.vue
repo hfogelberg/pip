@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Admin</h1>
+    <h2>Admin</h2>
 
     <hr />
 
@@ -12,5 +12,5 @@
 </template>
 
 <style lang="scss" scoped>
-@import '../assets/styles/style.scss'
+@import "../assets/styles/style.scss";
 </style>
