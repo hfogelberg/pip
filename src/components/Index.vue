@@ -1,7 +1,6 @@
 <template>
   <div>
     <h2>Index</h2>
-
     <hr />
     <router-link to="/characters">Karaktärer</router-link> <br>
     <router-link to="/chapters">Kapitel</router-link>
@@ -38,9 +37,7 @@
           }
         })
 
-        if (accessToken === "") {
-          this.$router.push("/login");
-        }
+        return accessToken;
       },
 
       getUserInfo(accessToken) {
@@ -75,7 +72,20 @@
     },
 
     created () {
-      this.getAccessToken();
+      // Check if there is a cookie
+      const cookie = document.cookie.match('(^|;) ?' + 'peckling' + '=([^;]*)(;|$)');
+      if (!cookie) {
+        // No cookie start login process
+        const token = this.getAccessToken();
+
+        if (token === "") {
+          // No token. Redirect to login
+          this.$router.push("/login");
+        } else {
+          // We have a token. Get user info
+          getUserInfo(token);
+        }
+      }
     }
   }
 </script>

@@ -1,5 +1,4 @@
 import VueRouter from "vue-router";
-import { store } from "./store/store.js";
 import Index from "./components/Index";
 import Login from "./components/Login";
 import Admin from "./components/Admin";
@@ -15,14 +14,13 @@ import Chapters from "./components/Chapters";
 import Chapter from "./components/Chapter";
 
 function redirectIfNotAuth(to, from, next) {
-  console.log("Checking auth");
-  const token = store.getters.token;
-  console.log("Token: " + token);
-  if (!token) {
-    console.log("No token");
+  const cookie = document.cookie.match(
+    "(^|;) ?" + "peckling" + "=([^;]*)(;|$)"
+  );
+
+  if (!cookie) {
     router.push("/login");
   }
-  console.log("Has token");
   next();
 }
 
