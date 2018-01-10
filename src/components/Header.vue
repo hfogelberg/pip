@@ -2,7 +2,7 @@
   <header>
     <ul>
       <li><h1><router-link to="/">Lilla Pip</router-link></h1></li>
-      <li><router-link to="/login">Login</router-link></li>
+      <li><router-link to="/">Bok</router-link>
       <li><router-link to="/admin">Admin</router-link></li>
     </ul>
   </header>
@@ -15,8 +15,9 @@
     left: 0;
     top:0;
     width: 100vw;
-    height: 4rem;
+    height: 5.5rem;
     padding: 0.5rem;
+    background-color: rgba(41, 128, 185, 0.4);
   }
 
   header ul {
@@ -35,38 +36,7 @@
     margin-right: auto;
   }
 
-  a {
-    font-size: 1.2em;
-    font-weight: 300;
-  }
-
-  a.admin {
-    opacity: 0;
-    margin-right: 3em;
-  }
-
-  a.admin:hover {
-    opacity: 1;
-  }
-
-  a:hover {
-    font-size: 1.4em;
-    text-decoration: none;
-  }
-
-  a:link {
-    text-decoration: none;
-  }
-
-  a:visited{
-    text-decoration: none;
-  }
-
-  a:focus {
-    text-decoration: none;
-  }
-
-  a:active {
-    text-decoration: none;
+  header a {
+    color: rgb(236, 240, 241);
   }
 </style>

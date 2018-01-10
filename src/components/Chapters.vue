@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Kapitel</h1>
+    <h2>Kapitel</h2>
 
     <hr />
 

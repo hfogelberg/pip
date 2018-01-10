@@ -1,14 +1,22 @@
 <template>
-  <div>
-    <h2>Index</h2>
-    <hr />
-    <router-link to="/characters">Karaktärer</router-link> <br>
-    <router-link to="/chapters">Kapitel</router-link>
-  </div>
+  <ul>
+    <li><router-link to="/characters">Karaktärer</router-link></li>
+    <li><router-link to="/chapters">Kapitel</router-link></li>
+  </ul>
 </template>
 
 <style lang="scss" scoped>
 @import "../assets/styles/style.scss";
+
+ul {
+  margin-left: 7wh;
+  margin-top: 5vw;
+  font-size: $m-size;
+}
+
+a {
+  color: #2c3e50;
+}
 </style>
 
 <script>

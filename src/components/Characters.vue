@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Karaktärer</h1>
+    <h2>Karaktärer</h2>
     
     <ul class="chars-cards">
       <li v-for="character in characters"> 

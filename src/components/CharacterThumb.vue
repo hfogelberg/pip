@@ -1,10 +1,10 @@
 <template>
-  <div class="thumb">
-   <img class= "thumb" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + character.image" v-bind:alt="character.name">
-    <h3>{{character.name}}</h3>
-
-    <router-link :to="'' + character._id" class="btn">Läs mer</router-link>
-  </div>
+  <router-link :to="'' + character._id" class="btn">
+    <div class="thumb">
+      <img class= "image" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + character.image" v-bind:alt="character.name">
+      <h3>{{character.name}}</h3>
+    </div>
+  </router-link>
 </template>
 
 <script>
@@ -22,10 +22,12 @@ export default {
   width: 22vw;
   height: 38vh;
   align-items: center;
+  justify-content: space-between;
   margin-right: 1vh;
-  margin-bottom: 1vh;
+  margin-bottom: 2vh;
   padding: 0.5em;
   border: 1px solid black;
+  border-radius: 20px;
 }
 
 .thumb > p {
