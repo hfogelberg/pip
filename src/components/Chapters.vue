@@ -13,14 +13,14 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 
 export default {
   created() {
     this.$store.dispatch("getChapterNames");
   },
   computed: {
-    ...mapGetters(['chapterNames'])
+    ...mapGetters(["chapterNames"])
   }
 }
 </script>

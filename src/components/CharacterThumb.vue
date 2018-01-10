@@ -1,6 +1,6 @@
 <template>
-  <div class="char-card">
-   <img class= 'thumb' :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + character.image" v-bind:alt="character.name">
+  <div class="thumb">
+   <img class= "thumb" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + character.image" v-bind:alt="character.name">
     <h3>{{character.name}}</h3>
 
     <router-link :to="'' + character._id" class="btn">Läs mer</router-link>
@@ -16,7 +16,7 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/styles/style.scss";
 
-.char-card {
+.thumb {
   display: flex;
   flex-direction: column;
   width: 22vw;
@@ -28,7 +28,7 @@ export default {
   border: 1px solid black;
 }
 
-.char-card > p {
+.thumb > p {
   width: 80%;
   margin-left: 10%;
   overflow: auto;

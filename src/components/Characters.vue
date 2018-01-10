@@ -12,7 +12,7 @@
 
 <script>
   import CharacterThumb from "./CharacterThumb";
-  import {mapGetters} from 'vuex';
+  import {mapGetters} from "vuex";
 
   export default {
     created() {
@@ -22,7 +22,7 @@
       characterThumb: CharacterThumb
     },
     computed: {
-      ...mapGetters(['characters'])
+      ...mapGetters(["characters"])
     }
   }
 </script>

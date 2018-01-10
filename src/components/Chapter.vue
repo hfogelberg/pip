@@ -1,7 +1,7 @@
 <template>
   <div class="chapter">
     <h1>{{chapter.title}}</h1>
-    <img class= 'character' :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + chapter.image" v-bind:alt="chapter.name">
+    <img class= "chapter" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + chapter.image" v-bind:alt="chapter.name">
 
     <page></page>
     <div v-if="isLastPage">
@@ -15,7 +15,7 @@
 
 <script>
 import Page from "./Page";
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 
 export default {
   components: {
@@ -33,7 +33,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['isLastPage', 'currentPage', 'chapter'])
+    ...mapGetters(["isLastPage", "currentPage", "chapter"])
   }
 }
 </script>

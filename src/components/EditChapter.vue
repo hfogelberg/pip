@@ -3,7 +3,7 @@
     <h2>{{chapter.title}}</h2>
 
     <div>
-      <img class= 'character' :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + chapter.image" v-bind:alt="chapter.name">
+      <img class= "chapter" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + chapter.image" v-bind:alt="chapter.name">
     </div>
 
     <div>
@@ -21,7 +21,7 @@
 
 <script>
 import PageThumb from "./PageThumb";
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 
 export default {
   components: {
@@ -33,7 +33,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['chapter', 'pages'])
+    ...mapGetters(["chapter", "pages"])
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <header>
     <ul>
-      <li><h1><router-link to='/'>Lilla Pip</router-link></h1></li>
+      <li><h1><router-link to="/">Lilla Pip</router-link></h1></li>
       <li><router-link to="/login">Login</router-link></li>
       <li><router-link to="/admin">Admin</router-link></li>
     </ul>

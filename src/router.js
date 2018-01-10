@@ -8,7 +8,6 @@ import AdminChapters from "./components/AdminChapters";
 import CreateChapter from "./components/CreateChapter";
 import EditChapter from "./components/EditChapter";
 import Characters from "./components/Characters";
-import Callback from "./components/Callback";
 import CreatePage from "./components/CreatePage";
 import Chapters from "./components/Chapters";
 import Chapter from "./components/Chapter";
@@ -29,7 +28,6 @@ const router = new VueRouter({
   routes: [
     { path: "/", component: Index },
     { path: "/login", component: Login },
-    { path: "/callback/google", component: Callback },
     {
       path: "/admin",
       component: Admin,

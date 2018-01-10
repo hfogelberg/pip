@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Karaktärer</h1>
+    <h2>Karaktärer</h2>
 
     <router-link to="/admin/characters/create">Lägg till</router-link>
 
@@ -14,7 +14,7 @@
 
 <script>
   import AdminCharacter from "./AdminCharacter";
-  import {mapGetters} from 'vuex';
+  import {mapGetters} from "vuex";
 
   export default {
     created() {
