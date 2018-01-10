@@ -6,11 +6,6 @@
 
 <script>
 export default {
-  mounted() {
-    if (!this.$store.getters.token) {
-      this.$router.push("/login");
-    }
-  },
   methods: {
     openChapter() {
       this.$store.dispatch("setCurrentChapter", this.chapter);

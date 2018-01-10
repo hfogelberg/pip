@@ -25,13 +25,12 @@ export default {
       this.$store.dispatch("nextPage");
     }
   },
-  mounted() {
-    if (!this.$store.getters.token) {
-      this.$router.push("/login");
-    }
+  
+  created() {
     this.$store.dispatch("getChapterById", this.$route.params.id)
     this.$store.dispatch("firstPage");
   },
+
   computed: {
     isLastPage() {
       return this.$store.getters.isLastPage;

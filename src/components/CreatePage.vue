@@ -38,12 +38,6 @@ export default {
     }
   },
 
-  mounted() {
-    if (!this.$store.getters.token) {
-      this.$router.push("/login");
-    }
-  },
-
   created() {
     const chapterId = this.$route.params.id;
     this.$store.dispatch("getNumPages", chapterId);

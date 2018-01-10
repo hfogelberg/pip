@@ -12,12 +12,6 @@
 
 <script>
 export default {
-  mounted() {
-    if (!this.$store.getters.user) {
-      this.$router.push("/login");
-    }
-  },
-
   computed: {
     page() {
       return this.$store.getters.currentPage;

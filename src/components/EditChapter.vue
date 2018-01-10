@@ -31,11 +31,7 @@ export default {
     pageThumb: PageThumb
   },
 
-  mounted() {
-    if (!this.$store.getters.token) {
-      this.$router.push("/login");
-    }
-    
+  created() {
     this.$store.dispatch("getChapterById")
   },
 

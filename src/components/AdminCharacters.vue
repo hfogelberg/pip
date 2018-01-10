@@ -16,10 +16,7 @@
   import AdminCharacter from "./AdminCharacter";
 
   export default {
-    mounted() {
-      if (!this.$store.getters.token) {
-        this.$router.push("/login");
-      }
+    created() {
       this.$store.dispatch("getCharacters");
     },
     components: {

@@ -16,10 +16,7 @@
   import AdminChapter from "./AdminChapter";
 
   export default {
-    mounted() {
-      if (!this.$store.getters.token) {
-        this.$router.push("/login");
-      }
+    created() {
       this.$store.dispatch("getChapters");
     },
     components: {

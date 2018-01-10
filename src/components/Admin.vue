@@ -11,16 +11,6 @@
   </div>  
 </template>
 
-<script>
-export default {
-  mounted(){
-    if (!this.$store.getters.token) {
-      this.$router.push("/login");
-    }
-  }
-}
-</script>
-
 <style lang="scss" scoped>
 @import '../assets/styles/style.scss'
 </style>
