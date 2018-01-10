@@ -2,7 +2,12 @@
   <div>
     <h2>Kapitel</h2>
 
-    <router-link to="/admin/chapters/create">Lägg till</router-link>
+    <div class="toolbar"> 
+      <router-link to="/admin/chapters/create">
+        <img src="../assets/img/add.svg">
+      </router-link>
+      <button @click="refresh"><img src="../assets/img/refresh.svg"></button>
+    </div>
 
     <ul>
       <li v-for="chapter in chapters"> 
@@ -20,6 +25,11 @@
     created() {
       this.$store.dispatch("getChapters");
     },
+    methods: {
+      refresh() {
+        this.$store.dispatch("getChapters");
+      }
+    },
     components: {
       adminChapter: AdminChapter
     },
@@ -36,5 +46,13 @@
 ul {
   margin-top: 2rem;
   margin-left: 3rem;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 </style>
