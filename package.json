@@ -3,7 +3,6 @@
   "description": "The book about Little Pip",
   "version": "1.0.0",
   "author": "Henrik Fogelberg <henrik.gogelberg@gmail.com>",
-  "license": "MIT",
   "private": true,
   "scripts": {
     "start": "node server.js",
@@ -24,11 +23,7 @@
   "now": {
     "alias": "pip"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

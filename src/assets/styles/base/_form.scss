@@ -5,7 +5,7 @@
 }
 
 .flex-outer {
-  max-width: 800px;
+  // max-width: 800px;
   margin: 0 auto;
 }
 
@@ -27,7 +27,7 @@
 
 .flex-outer li label,
 .flex-outer li p {
-  padding: 8px;
+  padding: 0.5rem;
   font-weight: 300;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -35,13 +35,13 @@
 
 .flex-outer > li > label,
 .flex-outer li p {
-  flex: 1 0 120px;
-  max-width: 220px;
+  flex: 1 0 1vw;
+  max-width: 80vw;
 }
 
 .flex-outer > li > label + *,
 .flex-inner {
-  flex: 1 0 220px;
+  flex: 1 0 60vw;
 }
 
 .flex-outer li p {
@@ -50,7 +50,10 @@
 
 .flex-outer li input:not([type="checkbox"]),
 .flex-outer li textarea {
-  padding: 15px;
+  padding: 0.6rem;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  outline: none;
 }
 
 .flex-outer li button {
@@ -63,4 +66,19 @@
 
 .flex-inner li {
   width: 100px;
+}
+
+button.btn-form {
+  color: $white-color;
+  font-size: $s-size;
+  padding: $xs-size, $s-size;
+  border-radius: 20px;
+}
+
+button.btn-save-form {
+  background-color: $submit-button-color;
+}
+
+button.btn-warning {
+  background-color: $warning-color;
 }

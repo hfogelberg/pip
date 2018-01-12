@@ -28,6 +28,37 @@ const mutations = {
 };
 
 const actions = {
+  deleteCharacter({ commit }, id) {
+    console.log("Delete character action " + id);
+    let url = `${API_ROOT_URL}/deletecharacter`;
+    axios
+      .post(url, { id })
+      .then(res => {
+        console.log("Delete character result", res.body);
+      })
+      .catch(err => {
+        console.log("Error deleting character", err);
+      });
+  },
+
+  changeCharacter({ commit }, character) {
+    console.log("Change character action", character);
+    let url = `${API_ROOT_URL}/changecharacter`;
+    console.log(url);
+    axios
+      .post(url, { character })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
+  setCurrentCharacter({ commit }, character) {
+    commit("character", character);
+  },
+
   createCharacter({ commit }, character) {
     console.log("Create Character Action", character);
     let url = `${API_ROOT_URL}/character`;
@@ -42,16 +73,18 @@ const actions = {
       });
   },
 
+  // Todo: Can remove?
   getCharacterById({ commit }, id) {
     let url = `${API_ROOT_URL}/characters/${id}`;
 
     axios
       .get(url)
       .then(res => {
+        console.log("Character found", res.data);
         commit("character", res.data.character);
       })
       .catch(err => {
-        console.log(err);
+        console.log("Error getting character by id ", err);
       });
   },
 

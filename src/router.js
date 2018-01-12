@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Admin from "./components/Admin";
 import AdminCharacters from "./components/AdminCharacters";
 import CreateCharacter from "./components/CreateCharacter";
+import EditCharacter from "./components/EditCharacter.vue";
 import AdminChapters from "./components/AdminChapters";
 import CreateChapter from "./components/CreateChapter";
 import EditChapter from "./components/EditChapter";
@@ -11,6 +12,7 @@ import Characters from "./components/Characters";
 import CreatePage from "./components/CreatePage";
 import Chapters from "./components/Chapters";
 import Chapter from "./components/Chapter";
+import Character from "./components/Character";
 
 function redirectIfNotAuth(to, from, next) {
   const cookie = document.cookie.match(
@@ -39,6 +41,11 @@ const router = new VueRouter({
       beforeEnter: redirectIfNotAuth
     },
     {
+      path: "/admin/editcharacter",
+      component: EditCharacter,
+      beforeEnter: redirectIfNotAuth
+    },
+    {
       path: "/admin/characters/create",
       component: CreateCharacter,
       beforeEnter: redirectIfNotAuth
@@ -59,13 +66,18 @@ const router = new VueRouter({
       beforeEnter: redirectIfNotAuth
     },
     {
+      path: "/admin/addPage/:id",
+      component: CreatePage,
+      beforeEnter: redirectIfNotAuth
+    },
+    {
       path: "/characters",
       component: Characters,
       beforeEnter: redirectIfNotAuth
     },
     {
-      path: "/admin/addPage/:id",
-      component: CreatePage,
+      path: "/character/:id",
+      component: Character,
       beforeEnter: redirectIfNotAuth
     },
     {

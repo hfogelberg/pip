@@ -35,7 +35,7 @@
           <td>
             {{character.description}}
           </td>
-          <td>Ändra (skall vara en länk här)</td>
+          <td><button class="btn-edit-char" @click="editCharacter(character)">Ändra</button></td>
         </tr>
       </table>
     </div>
@@ -53,6 +53,12 @@
     methods: {
       refresh() {
         this.$store.dispatch("getCharacters");
+      },
+
+      editCharacter(character) {
+        console.log("Edit", character)
+        this.$store.dispatch("setCurrentCharacter", character);
+        this.$router.push("/admin/editcharacter");
       }
     },
 
@@ -80,11 +86,11 @@ ul.toolbar {
   margin-right: 0.8rem;
 }
 
-button {
-  padding: 0;
-  border: none;
-  background: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+button.btn-edit-char {
+  font-size: 1.2rem;
+  background-color: $edit-button-color;
+  color: $background-color;
+  padding: $xs-size $s-size;
+  border-radius: 10px;
 }
 </style>
