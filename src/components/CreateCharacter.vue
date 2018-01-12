@@ -15,7 +15,7 @@
           <textarea name="description" rows="4" id="description" cols="80" v-model="description"></textarea>
         </li>
         <li>
-          <button type="button" name="button" id="save" @click="save">Spara</button>
+          <button type="button" name="button" id="save" class="btn-form btn-add" @click="save">Spara</button>
         </li>
       </ul>
     </form>

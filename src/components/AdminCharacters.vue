@@ -31,8 +31,8 @@
           <td>
             <img class= "character" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + character.image" v-bind:alt="character.name">
           </td>
-          <td>{{character.name}}</td>
-          <td>
+          <td class="name">{{character.name}}</td>
+          <td class="description">
             {{character.description}}
           </td>
           <td><button class="btn-edit-char" @click="editCharacter(character)">Ändra</button></td>
@@ -84,6 +84,20 @@ ul.toolbar {
 
 .toolbar > li {
   margin-right: 0.8rem;
+}
+
+td.name {
+  font-size: $m-size;
+  font-weight: 400;
+  letter-spacing: 0.02rem;
+}
+
+td.description {
+  font-size: $xs-size;
+  max-width: 40vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 button.btn-edit-char {

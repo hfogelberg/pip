@@ -18,7 +18,7 @@
         </li>
 
         <li>
-          <button type="button" name="button" id="save" @click="save">Spara</button>
+          <button type="button" name="button" id="save" class="btn-form btn-add" @click="save">Spara</button>
         </li>
       </ul>
     </form>
@@ -89,5 +89,9 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/styles/style.scss";
+
+#pageNumber {
+  max-width: 3ch;
+}
 </style>
 
