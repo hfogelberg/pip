@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "cloudinary": "^1.9.1",
+    "concurrently": "^3.5.1",
     "cors": "^2.8.4",
     "mongoose": "^4.13.6",
     "validator": "^9.2.0",
@@ -23,7 +24,11 @@
   "now": {
     "alias": "pip"
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

@@ -69,42 +69,5 @@
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/styles/style.scss";
-
-.characters-container {
-  with: 80vw;
-}
-
-ul.toolbar {
-  margin: 3vh 0 1vh 0;
-  list-style: none;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.toolbar > li {
-  margin-right: 0.8rem;
-}
-
-td.name {
-  font-size: $m-size;
-  font-weight: 400;
-  letter-spacing: 0.02rem;
-}
-
-td.description {
-  font-size: $xs-size;
-  max-width: 40vw;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-button.btn-edit-char {
-  font-size: 1.2rem;
-  background-color: $edit-button-color;
-  color: $background-color;
-  padding: $xs-size $s-size;
-  border-radius: 10px;
-}
+@import "../sass/main.scss";
 </style>

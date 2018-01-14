@@ -21,16 +21,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/styles/style.scss";
-
-.page {
-  width: 80vw;
-  margin-left: 10vw;
-  display: flex;
-  flex-direction: column;
-}
-
-img {
-  align-items: center;
-}
+@import "../sass/main.scss";
 </style>

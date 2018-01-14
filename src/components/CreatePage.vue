@@ -88,10 +88,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/styles/style.scss";
-
-#pageNumber {
-  max-width: 3ch;
-}
+@import "../sass/main.scss";
 </style>
 

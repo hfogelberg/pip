@@ -5,20 +5,6 @@
   </ul>
 </template>
 
-<style lang="scss" scoped>
-@import "../assets/styles/style.scss";
-
-ul {
-  margin-left: 7wh;
-  margin-top: 5vw;
-  font-size: $m-size;
-}
-
-a {
-  color: #2c3e50;
-}
-</style>
-
 <script>
   import axios from "axios";
 
@@ -97,3 +83,7 @@ a {
     }
   }
 </script>
+
+<style lang="scss" scoped>
+@import "../sass/main.scss";
+</style>

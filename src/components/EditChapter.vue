@@ -70,41 +70,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/styles/style.scss";
-
-.edit-chapter {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-ul.toolbar {
-  margin: 3vh 0 1vh 0;
-  list-style: none;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.toolbar > li {
-  margin-right: 0.8rem;
-}
-
-button {
-  padding: 0;
-  border: none;
-  background: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.image-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 3vh;
-}
-
-.pages-container {
-  width: 80vw;
-}
+@import "../sass/main.scss";
 </style>

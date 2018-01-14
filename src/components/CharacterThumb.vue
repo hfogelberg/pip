@@ -14,26 +14,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/styles/style.scss";
-
-.thumb {
-  display: flex;
-  flex-direction: column;
-  width: 22vw;
-  height: 38vh;
-  align-items: center;
-  justify-content: space-between;
-  margin-right: 1vh;
-  margin-bottom: 2vh;
-  padding: 0.5em;
-  border: 1px solid black;
-  border-radius: 20px;
-}
-
-.thumb > p {
-  width: 80%;
-  margin-left: 10%;
-  overflow: auto;
-  margin-bottom: 0.8em;
-}
+@import "../sass/main.scss";
 </style>
