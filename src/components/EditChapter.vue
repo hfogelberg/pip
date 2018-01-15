@@ -1,5 +1,5 @@
 <template>
-  <div class="edit-chapter">
+  <section class="edit-chapter">
     <ul class="toolbar">
       <li>
         <router-link :to="'/admin/addPage/' + chapter._id ">
@@ -7,7 +7,7 @@
         </router-link>
       </li>
       <li>
-        <button @click="refresh">
+        <button @click="refresh" class="btn-transparent">
           <img src="../assets/img/refresh.svg">
         </button>
       </li>
@@ -18,57 +18,59 @@
       </li>
     </ul>
 
-    <h2>{{chapter.title}}</h2>
+    <h2 class="u-center-text u-margin-bottom-medium">{{chapter.title}}</h2>
 
-    <div class="image-container">
-      <img class= "chapter" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + chapter.image" v-bind:alt="chapter.name">
+    <div class="centered-image-containter">
+      <img class= "image chapter-image" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + chapter.image" v-bind:alt="chapter.name">
     </div>
 
-    <div class="pages-container">
-      <table>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr v-for="page in pages">
-          <td>{{page.pageNumber}}</td>
-          <td>
-            <img class= "thumbImage" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + page.image" v-bind:alt="page.image">
-          </td>
-          <td>  
-            {{page.text}}
-          </td>
-          <td>
-            Ändra (skall vara här)
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
+    <table class="tbl-edit-chapter">
+      <tr v-for="page in this.chapter.pages">
+        <td>{{page.pageNumber}}</td>
+        <td>
+          <img class= "thumbImage" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + page.image" v-bind:alt="page.image">
+        </td>
+        <td class="text">{{page.text}}</td>
+        <td>Ändra</td>
+      </tr>
+    </table>
+  </section>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
 
 export default {
-  created() {
-    this.$store.dispatch("getChapterById")
-  },
-
   methods: {
     refresh() {
-      this.$store.dispatch("getChapterById");
+      this.$store.dispatch("getChapterById", this.chapter._id);
     }
   },
 
   computed: {
-    ...mapGetters(["chapter", "pages"])
+    ...mapGetters(["chapter"])
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "../sass/main.scss";
+
+.edit-chapter {
+  color: $color-black;
+}
+
+td.text {
+  font-size: $font-size-default;
+  max-width: 40vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: $color-text-main
+}
+
+.btn-edit {
+  background-color: $color-btn-edit;
+  color: $color-off-white;
+}
 </style>

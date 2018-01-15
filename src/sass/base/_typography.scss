@@ -1,1 +1,14 @@
+body {
+    font-family: "Exo", sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    color: $color-off-white;
+    padding: 3rem;
+    box-sizing: border-box;
+}
 
+h2 {
+    font-size: $font-size-large;
+    color: $color-menu-dark;
+    font-weight: 700;
+}

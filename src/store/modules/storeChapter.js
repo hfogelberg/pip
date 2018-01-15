@@ -5,15 +5,10 @@ import axios from "axios";
 const state = {
   chapters: [],
   chapter: {},
-  chapterNames: [],
-  currentChapter: {}
+  chapterNames: []
 };
 
 const getters = {
-  currentChapter: state => {
-    return state.currentChapter;
-  },
-
   chapterNames: state => {
     return state.chapterNames;
   },
@@ -37,6 +32,7 @@ const mutations = {
   },
 
   chapter: (state, chapter) => {
+    console.log("Chapter mutation");
     state.chapter = chapter;
   },
 
@@ -54,11 +50,6 @@ const mutations = {
 };
 
 const actions = {
-  setCurrentChapter({ commit }, currentChapter) {
-    console.log("Setting current chapter", currentChapter);
-    commit("currentChapter", currentChapter);
-  },
-
   createChapter({ commit }, chapter) {
     let url = `${API_ROOT_URL}/chapter`;
     axios
@@ -77,22 +68,36 @@ const actions = {
       .get(url)
       .then(res => {
         commit("chapterNames", res.data.names);
+        commit("resetPage");
       })
       .catch(err => {
         console.log(err);
       });
   },
 
-  getChapterById({ commit }) {
-    const id = state.currentChapter._id;
-    console.log("Get Chapter by Id " + id);
+  getChapterById({ commit }, id) {
+    console.log("*** GET CHAPTER BY ID *** " + id);
     let url = `${API_ROOT_URL}/chapters/${id}`;
     axios
       .get(url)
       .then(res => {
-        console.log("GET CHAPTER BY ID", res);
+        console.log("CHAPTER", res.data);
         commit("chapter", res.data.chapter);
-        commit("pages", res.data.chapter.pages);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
+  getCurrentChapter({ commit }) {
+    const id = state.currentChapter._id;
+    console.log("*** Get Current Chapter *** " + id);
+    let url = `${API_ROOT_URL}/chapters/${id}`;
+    axios
+      .get(url)
+      .then(res => {
+        console.log("GET CHAPTER BY ID", res.data);
+        commit("chapter", res.data.chapter);
       })
       .catch(err => {
         console.log(err);

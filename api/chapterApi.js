@@ -11,7 +11,7 @@ let chapter = (app, db, cloudinary) => {
         res.send(JSON.stringify({ status: "OK", numPages: numPages }));
       })
       .catch(err => {
-        console.log(`Error fetching character: ${err}`);
+        console.log(`Error fetching chapetr: ${err}`);
         res.status(500).send({ err });
       });
   }),
@@ -44,7 +44,7 @@ let chapter = (app, db, cloudinary) => {
         res.send(JSON.stringify({ status: "OK", chapter: chapter }));
       })
       .catch(err => {
-        console.log(`Error fetching character: ${err}`);
+        console.log(`Error in chapters/:id: ${err}`);
         res.status(500).send({ err });
       });
   });
@@ -59,7 +59,7 @@ let chapter = (app, db, cloudinary) => {
         res.send(JSON.stringify({ status: "OK", names: chapter }));
       })
       .catch(err => {
-        console.log(`Error fetching character: ${err}`);
+        console.log(`Error fetching chapternames: ${err}`);
         res.status(500).send({ err });
       });
   });

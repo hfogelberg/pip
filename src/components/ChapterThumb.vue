@@ -1,18 +1,20 @@
 <template>
-  <div class="chapter">
-    <button @click="openChapter" class="btn-transparent u-margin-bottom-medium chapter-name">{{chapter.title}}</button>
-  </div>
+  <section>
+      <button @click="openChapter" class="btn-transparent u-margin-bottom-medium chapter-name">{{chapter.title}}</button>
+  </section>
+
 </template>
+
 
 <script>
 export default {
+  props: ["chapter"],
   methods: {
     openChapter() {
       this.$store.dispatch("getChapterById", this.chapter._id);
-      this.$router.push("/admin/editchapter");
+      this.$router.push("/chapter");
     }
-  },
-  props: ["chapter"]
+  }
 }
 </script>
 
@@ -21,5 +23,6 @@ export default {
 
 .chapter-name {
   font-size: $font-size-medium;
+  color: $color-primary-light;
 }
 </style>

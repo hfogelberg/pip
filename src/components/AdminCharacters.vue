@@ -1,12 +1,12 @@
 <template>
-  <div class="edit-characters">
+  <div class="admin-characters">
     <ul class="toolbar">
       <li>
         <router-link to="/admin/characters/create">
           <img src="../assets/img/add.svg">
         </router-link>
       <li>
-        <button @click="refresh">
+        <button @click="refresh" class="btn-transparent">
           <img src="../assets/img/refresh.svg">
         </button>
       </li>
@@ -17,7 +17,7 @@
       </li>
     </ul>
 
-    <h2>Karaktärer</h2>
+    <h2 class="u-center-text u-margin-bottom-medium">Karaktärer</h2>
 
     <div class="characters-container">
       <table>
@@ -35,7 +35,7 @@
           <td class="description">
             {{character.description}}
           </td>
-          <td><button class="btn-edit-char" @click="editCharacter(character)">Ändra</button></td>
+          <td><button class="btn btn-edit-char" @click="editCharacter(character)">Ändra</button></td>
         </tr>
       </table>
     </div>
@@ -70,4 +70,24 @@
 
 <style lang="scss" scoped>
 @import "../sass/main.scss";
+
+td.name {
+  font-size: $font-size-medium;
+  font-weight: 400;
+  letter-spacing: 0.02rem;
+  color: $color-text-main;
+  overflow-wrap: break-word;
+}
+td.description {
+  font-size: $font-size-default;
+  max-width: 40vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: $color-text-main
+}
+.btn-edit-char {
+  background-color: $color-btn-edit;
+  color: $color-off-white;
+}
 </style>

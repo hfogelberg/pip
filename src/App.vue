@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <appHeader></appHeader>
+    <appMeny></appMeny>
     <div class="container">
       <router-view></router-view>
     </div>
@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import Header from "./components/Header";
+import Menu from "./components/Menu";
 
 export default {
   components: {
-    appHeader: Header
+    appMeny: Menu
   },
 
   mounted() {
@@ -23,9 +23,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import '/assets/styles/style.scss';
+@import "./sass/main.scss";
 
 .container {
-  margin-top: 3rem;
+  margin-top: 5vw;
+  padding: 1vw;
 }
 </style>

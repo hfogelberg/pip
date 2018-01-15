@@ -1,1 +1,14 @@
+.btn {
+    font-size: $font-size-default;
+    padding: $gutter-xsmall $gutter-small;
+    border-radius: 10px;
+}
 
+.btn-transparent {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}

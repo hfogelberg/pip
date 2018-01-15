@@ -1,0 +1,10 @@
+a {
+  &:hover,
+  &:link,
+  &:visited,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: $color-text-main;
+  }
+}

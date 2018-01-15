@@ -1,16 +1,24 @@
 <template>
-  <div>
-    <h2>Kapitel</h2>
+  <div class="admin-chapters">
+    <ul class="toolbar"> 
+      <li>
+        <router-link to="/admin/chapters/create">
+          <img src="../assets/img/add.svg">
+        </router-link>
+      </li>
+      <li>
+        <button @click="refresh" class="btn-transparent"><img src="../assets/img/refresh.svg"></button>
+      </li>
+      <li>
+        <router-link to="/admin/">
+          <img src="../assets/img/back.svg">
+        </router-link>
+      </li>
+    </ul>
 
-    <div class="toolbar"> 
-      <router-link to="/admin/chapters/create">
-        <img src="../assets/img/add.svg">
-      </router-link>
-      <button @click="refresh"><img src="../assets/img/refresh.svg"></button>
-    </div>
-
+    <h2 class="u-center-text u-margin-bottom-medium">Admin kapitel</h2>
     <ul>
-      <li v-for="chapter in chapters"> 
+      <li v-for="chapter in chapters" class="u-center-text"> 
         <adminChapter :chapter="chapter"></adminChapter>
       </li>
     </ul>

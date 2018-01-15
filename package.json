@@ -6,14 +6,14 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
+    "dev": "concurrently --kill-others \"npm run vue\" \"npm run server\"",
     "server": "cross-env NODE_ENV='development' nodemon server.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "vue": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
     "axios": "^0.17.1",
     "cloudinary": "^1.9.1",
-    "concurrently": "^3.5.1",
     "cors": "^2.8.4",
     "mongoose": "^4.13.6",
     "validator": "^9.2.0",
@@ -24,16 +24,13 @@
   "now": {
     "alias": "pip"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
+    "concurrently": "^3.5.1",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Nytt kapitel</h1>
+    <h2 class="u-center-text u-margin-bottom-medium">Nytt kapitel</h2>
     <form>
       <ul class="flex-outer">
         <li>

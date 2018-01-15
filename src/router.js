@@ -86,7 +86,7 @@ const router = new VueRouter({
       beforeEnter: redirectIfNotAuth
     },
     {
-      path: "/chapter/:id",
+      path: "/chapter",
       component: Chapter,
       beforeEnter: redirectIfNotAuth
     }

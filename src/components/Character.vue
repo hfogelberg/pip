@@ -1,16 +1,21 @@
 <template>
-  <div class="character">
-    <h2>{{character.name}}</h2>
-    <router-link to="/characters">
-      <img src="../assets/img/back.svg">
-    </router-link>
-    <div class="image-containter">
-      <img class= "image" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_380/v1514893300/' + character.image" v-bind:alt="character.name">
+  <section class="character">
+    <ul class="toolbar">
+      <li>
+        <router-link to="/characters">
+          <img src="../assets/img/back.svg">
+        </router-link>
+      </li>
+    </ul>
+
+    <h2 class="u-center-text u-margin-bottom-medium">{{character.name}}</h2>
+    <div class="centered-image-containter">
+      <img class= "image character-image" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_380/v1514893300/' + character.image" v-bind:alt="character.name">
     </div>
     <p class="paragraph character-description">
       {{character.description}}
     </p>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -30,4 +35,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "../sass/main.scss";
+
+.character-image {
+  height: 40vh;
+}
 </style>

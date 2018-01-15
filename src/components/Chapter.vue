@@ -1,44 +1,50 @@
 <template>
-  <div class="chapter">
-    <h1>{{chapter.title}}</h1>
-    <img class= "chapter" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + chapter.image" v-bind:alt="chapter.name">
+  <section class="chapter">
+    <ul class="toolbar"> 
+      <li>
+        <router-link to="/chapters">
+          <img src="../assets/img/back.svg">
+        </router-link>
+      </li>
+    </ul>
 
-    <page></page>
-    <div v-if="isLastPage">
-      <router-link to="/chapters">Slut!</router-link>
+    <h2 class="u-center-text u-margin-bottom-medium">{{this.chapter.title}}</h2>
+
+    <pageThumb :page="this.chapter.pages[this.pageNumber]"></pageThumb>
+
+    <div class="turn-page">
+      <button @click="previousPage" class="btn-transparent btn-turn-page">Förra sidan</button>
+      <button @click="nextPage" class="btn-transparent btn-turn-page">Nästa sida</button>
     </div>
-    <div v-else>
-      <button @click="nextPage">Nästa sida</button>
-    </div>
-  </div>
+  </section>
 </template>
 
 <script>
-import Page from "./Page";
 import {mapGetters} from "vuex";
+import Page from "./Page.vue";
 
 export default {
-  components: {
-    page: Page
-  },
   methods: {
     nextPage() {
-      this.$store.dispatch("nextPage");
+      this.$store.dispatch("nextPage")
+    }, 
+    previousPage() {
+      this.$store.dispatch("previousPage")
     }
   },
-  
-  created() {
-    this.$store.dispatch("getChapterById", this.$route.params.id)
-    this.$store.dispatch("firstPage");
+
+  components: {
+    pageThumb: Page
   },
 
   computed: {
-    ...mapGetters(["isLastPage", "currentPage", "chapter"])
+    ...mapGetters(["chapter", "pageNumber"])
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "../sass/main.scss";
+
 </style>
 

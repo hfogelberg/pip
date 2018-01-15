@@ -1,13 +1,21 @@
 <template>
-  <div>
-    <h2>Karaktärer</h2>
+  <section class="characters">
+    <ul class="toolbar"> 
+      <li>
+        <router-link to="/">
+          <img src="../assets/img/back.svg">
+        </router-link>
+      </li>
+    </ul>
+
+    <h2 class="u-center-text u-margin-bottom-medium">Karaktärer</h2>
     
     <ul class="chars-cards">
       <li v-for="character in characters"> 
         <characterThumb :character="character"></characterThumb>
       </li>
     </ul>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -29,4 +37,11 @@
 
 <style lang="scss" scoped>
 @import "../sass/main.scss";
+
+ul.chars-cards {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 </style>

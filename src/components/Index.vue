@@ -1,8 +1,11 @@
 <template>
-  <ul>
-    <li><router-link to="/characters">Karaktärer</router-link></li>
-    <li><router-link to="/chapters">Kapitel</router-link></li>
-  </ul>
+  <section class="index">
+      <h2 class="u-center-text u-margin-bottom-medium">Index</h2>
+    <ul>
+      <li class="section-list-item u-center-text u-margin-bottom-small"><router-link to="/characters">Karaktärer</router-link></li>
+      <li class="section-list-item u-center-text u-margin-bottom-small"><router-link to="/chapters">Kapitel</router-link></li>
+    </ul>
+  </section>
 </template>
 
 <script>

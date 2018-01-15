@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>Ny sida</h1>
+  <section class="create-page">
+    <h2 class="u-center-text u-margin-bottom-medium">Ny sida</h2>
     <form>
       <ul class="flex-outer">
         <li>
@@ -22,7 +22,7 @@
         </li>
       </ul>
     </form>
-  </div>
+  </section>
 </template>
 
 <script>

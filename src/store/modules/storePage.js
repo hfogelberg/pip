@@ -24,7 +24,7 @@ const getters = {
   },
 
   pages: state => {
-    return state.pages;
+    return state.chapter.pages;
   },
 
   pageNumber: state => {
@@ -55,9 +55,13 @@ const mutations = {
 };
 
 const actions = {
-  firstPage({ commit }) {},
+  firstPage({ commit }) {
+    commit("nextPage");
+  },
 
-  nextPage({ commit }) {},
+  nextPage({ commit }) {
+    commit("previousPage");
+  },
 
   createPage({ commit }, page) {
     let url = `${API_ROOT_URL}/page`;

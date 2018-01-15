@@ -1,19 +1,26 @@
 <template>
-  <div>
-    <h2>Kapitel</h2>
-
-    <hr />
-
-    <ul>
-      <li v-for="chapter in chapters">
-        <router-link :to="'/chapter/' + chapter._id">{{chapter.title}}</router-link>
+  <section class="chapters  ">
+      <ul class="toolbar"> 
+      <li>
+        <router-link to="/">
+          <img src="../assets/img/back.svg">
+        </router-link>
       </li>
     </ul>
-  </div>
+
+    <h2 class="u-center-text u-margin-bottom-medium">Kapitel</h2>
+
+    <ul>
+      <li v-for="chapter in chapterNames" class="section-list-item u-center-text u-margin-bottom-small chapter-name">
+        <chapterThumb :chapter="chapter"></chapterThumb>
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
+import ChapterThumb from "./ChapterThumb";
 
 export default {
   created() {
@@ -21,6 +28,9 @@ export default {
   },
   computed: {
     ...mapGetters(["chapterNames"])
+  },
+  components: {
+    chapterThumb: ChapterThumb
   }
 }
 </script>
