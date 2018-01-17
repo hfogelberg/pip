@@ -28,7 +28,7 @@
       <tr v-for="page in this.chapter.pages">
         <td>{{page.pageNumber}}</td>
         <td>
-          <img class= "thumbImage" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + page.image" v-bind:alt="page.image">
+          <img class= "thumbImage" :src="cloudinaryThumbUrl + page.image" v-bind:alt="page.image">
         </td>
         <td class="text">{{page.text}}</td>
         <td class="edit"><button class="btn btn-edit" @click="editPage(page)">Ändra</button></td>
@@ -53,7 +53,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["chapter"])
+    ...mapGetters(["chapter", "cloudinaryThumbUrl"])
   }
 };
 </script>

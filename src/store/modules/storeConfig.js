@@ -1,5 +1,7 @@
 import Vue from "vue";
-import { API_ROOT_URL } from "../../settings";
+import {
+  API_ROOT_URL
+} from "../../settings";
 import axios from "axios";
 
 const state = {
@@ -8,6 +10,8 @@ const state = {
   cloudinarySecret: "",
   cloudinaryUploadUrl: "",
   cloudinaryUploadPreset: "",
+  cloudinaryLargeUrl: "",
+  cloudinaryThumbUrl: "",
   googleClientId: "",
   googleCallbackUrl: ""
 };
@@ -27,6 +31,13 @@ const getters = {
   },
   cloudinarySecret: state => {
     return state.cloudinarySecret;
+  },
+  cloudinaryLargeUrl: state => {
+    return state.cloudinaryLargeUrl;
+  },
+  cloudinaryThumbUrl: state => {
+    console.log("Fetching thumb url", state.cloudinaryThumbUrl);
+    return state.cloudinaryThumbUrl;
   },
   googleClientId: state => {
     return state.googleClientId;
@@ -52,6 +63,12 @@ const mutations = {
   cloudinarySecret: (state, cloudinarySecret) => {
     state.cloudinarySecret = cloudinarySecret;
   },
+  cloudinaryLargeUrl: (state, cloudinaryLargeUrl) => {
+    state.cloudinaryLargeUrl = cloudinaryLargeUrl;
+  },
+  cloudinaryThumbUrl: (state, cloudinaryThumbUrl) => {
+    state.cloudinaryThumbUrl = cloudinaryThumbUrl;
+  },
   googleClientId: (state, googleClientId) => {
     state.googleClientId = googleClientId;
   },
@@ -61,7 +78,9 @@ const mutations = {
 };
 
 const actions = {
-  getConfig: ({ commit }) => {
+  getConfig: ({
+    commit
+  }) => {
     console.log("getConfig action");
     let url = `${API_ROOT_URL}/settings`;
     console.log("Settings url: " + url);
@@ -76,6 +95,8 @@ const actions = {
           "cloudinaryUploadPreset",
           res.data.settings.cloudinaryUploadPreset
         );
+        commit("cloudinaryLargeUrl", res.data.settings.cloudinaryLargeUrl);
+        commit("cloudinaryThumbUrl", res.data.settings.cloudinaryThumbUrl);
         commit("cloudinarySecret", res.data.settings.cloudinarySecret);
         commit("googleClientId", res.data.settings.googleClientId);
         commit("googleCallbackUrl", res.data.settings.googleCallbackUrl);

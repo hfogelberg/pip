@@ -1,15 +1,19 @@
 <template>
   <router-link :to="'/character/' + character._id" class="btn">
     <div class="thumb">
-      <img class= "image" :src="'https://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + character.image" v-bind:alt="character.name">
+      <img class= "image" :src="cloudinaryThumbUrl + character.image" v-bind:alt="character.name">
       <h3>{{character.name}}</h3>
     </div>
   </router-link>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
 export default {
-  props: ["character"]
+  props: ["character"],
+  computed: {
+    ...mapGetters(["cloudinaryThumbUrl"])
+  }
 };
 </script>
 

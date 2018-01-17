@@ -1,7 +1,7 @@
 <template>
   <section class="page">    
     <p class="paragraph">
-      <img class= "image chapter-image" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_400/v1514893300/' + page.image" v-bind:alt="page.image">
+      <img class= "image chapter-image" :src="cloudinaryLargeUrl + page.image" v-bind:alt="page.image">
       {{page.text}}
     </p>
   </section>
@@ -11,7 +11,10 @@
 import { mapGetters } from "vuex";
 
 export default {
-  props: ["page"]
+  props: ["page"],
+  computed: {
+    ...mapGetters(["cloudinaryLargeUrl"])
+  }
 };
 </script>
 
@@ -21,6 +24,7 @@ export default {
 .chapter-image {
   float: left;
   border-radius: 5px;
-  padding: 0 $gutter-xsmall $gutter-xsmall 0;
+  margin: 0 $gutter-small $gutter-small 0;
+  box-shadow: 0 10px 20px rgba($color-black, 0.2);
 }
 </style>

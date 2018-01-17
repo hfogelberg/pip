@@ -6,6 +6,8 @@ let settings = app => {
       CLOUDINARY_API_KEY,
       CLOUDINARY_UPLOAD_URL,
       CLOUDINARY_API_SECRET,
+      CLOUDINARY_LARGE_URL,
+      CLOUDINARY_THUMB_URL,
       CLOUDINARY_UPLOAD_PRESET,
       GOOGLE_CLIENT_ID,
       GOOGLE_CALLBACK_URL
@@ -17,13 +19,19 @@ let settings = app => {
       cloudinarySecret: CLOUDINARY_API_SECRET,
       cloudinaryUploadUrl: CLOUDINARY_UPLOAD_URL,
       cloudinaryUploadPreset: CLOUDINARY_UPLOAD_PRESET,
+      cloudinaryLargeUrl: CLOUDINARY_LARGE_URL,
+      cloudinaryThumbUrl: CLOUDINARY_THUMB_URL,
       googleClientId: GOOGLE_CLIENT_ID,
       googleCallbackUrl: GOOGLE_CALLBACK_URL
     };
 
     res.setHeader("Content-Type", "application/json");
-    res.send(JSON.stringify({ settings }));
+    res.send(JSON.stringify({
+      settings
+    }));
   });
 };
 
-module.exports = { settings };
+module.exports = {
+  settings
+};

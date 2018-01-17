@@ -11,7 +11,7 @@
     <h2 class="u-center-text u-margin-bottom-medium">{{character.name}}</h2>
     
     <p class="paragraph character-description">
-      <img class= "image character-image" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_380/v1514893300/' + character.image" v-bind:alt="character.name">
+      <img class= "image character-image" :src=" cloudinaryLargeUrl + character.image" v-bind:alt="character.name">
 
       {{character.description}}
     </p>
@@ -27,7 +27,7 @@ export default {
     this.$store.dispatch("getCharacterById", id);
   },
   computed: {
-    ...mapGetters(["character"])
+    ...mapGetters(["character", "cloudinaryLargeUrl"])
   }
 };
 </script>
