@@ -104,7 +104,7 @@ export default {
         });
     },
 
-    updateCharacter() {this.character);
+    updateCharacter() {
       this.$store.dispatch("changeCharacter", this.character);
       this.$router.push("/admin/characters");
     },

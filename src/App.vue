@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <appMeny></appMeny>
+    <appHeader></appHeader>
     <div class="container">
       <router-view></router-view>
     </div>
@@ -8,18 +8,18 @@
 </template>
 
 <script>
-import Menu from "./components/Menu";
+import Header from "./components/Header";
 
 export default {
   components: {
-    appMeny: Menu
+    appHeader: Header
   },
 
   mounted() {
-    console.log("App mounted")
+    console.log("App mounted");
     this.$store.dispatch("getConfig");
   }
-}
+};
 </script>
 
 <style lang="scss">

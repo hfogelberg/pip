@@ -93,7 +93,6 @@ export default {
     },
 
     updatePage() {
-      this.currentPage);
       this.$store.dispatch("changePage", this.currentPage);
     }
   },
