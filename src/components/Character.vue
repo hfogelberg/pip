@@ -9,10 +9,10 @@
     </ul>
 
     <h2 class="u-center-text u-margin-bottom-medium">{{character.name}}</h2>
-    <div class="centered-image-containter">
-      <img class= "image character-image" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_380/v1514893300/' + character.image" v-bind:alt="character.name">
-    </div>
+    
     <p class="paragraph character-description">
+      <img class= "image character-image" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_380/v1514893300/' + character.image" v-bind:alt="character.name">
+
       {{character.description}}
     </p>
   </section>
@@ -23,6 +23,7 @@ import { mapGetters } from "vuex";
 
 export default {
   created() {
+    const id = this.$route.params.id;
     this.$store.dispatch("getCharacterById", id);
   },
   computed: {
@@ -36,5 +37,8 @@ export default {
 
 .character-image {
   height: 40vh;
+  float: left;
+  border-radius: 5px;
+  padding: 0 $gutter-xsmall $gutter-xsmall 0;
 }
 </style>
