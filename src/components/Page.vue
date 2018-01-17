@@ -20,5 +20,7 @@ export default {
 
 .chapter-image {
   float: left;
+  border-radius: 5px;
+  padding: 0 $gutter-xsmall $gutter-xsmall 0;
 }
 </style>
