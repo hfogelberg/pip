@@ -7,8 +7,8 @@
         </router-link>
       </li>
     </ul>
-    
-    <h2 class="u-center-text u-margin-bottom-medium">Ändra sida {{this.currentPage.pageNumber}}</h2>
+
+    <h2 class="u-center-text u-margin-bottom-medium">Ändra sida {{currentPage.pageNumber}}</h2>
 
     <form class="form">
       <div class="row form__form-row">
@@ -24,7 +24,7 @@
           <label for="image" class="form_label">Text</label>
         </div>
         <div class="col-2-of-3">
-          <textarea name="text" rows="4" id="text" cols="80" v-model="this.currentPage.text"></textarea>
+          <textarea name="text" rows="4" id="text" cols="80" v-model="currentPage.text"></textarea>
         </div>
       </div>
       <div class="row form__form-row">
@@ -32,7 +32,7 @@
           <label for="image" class="form_label">Sidnummer</label>
         </div>
         <div class="col-2-of-3">
-          <input type="number" name="pageNumber" id="pageNumber" v-model.number="this.currentPage.pageNumber">
+          <input type="number" name="pageNumber" id="pageNumber" v-model.number="currentPage.pageNumber">
         </div>
       </div>
       <div class="row form__form-row">
@@ -50,8 +50,53 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      imageUrl: "",
+      imageSrc: "",
+      files: [],
+      hasImage: false
+    };
+  },
   methods: {
-    update() {}
+    uploadImage(e) {
+      this.hasImage = !this.hasImage;
+      this.files = e.target.files;
+    },
+
+    update() {
+      if (this.hasImage) {
+        this.imageToCloud();
+      } else {
+        this.updatePage();
+      }
+    },
+
+    imageToCloud() {
+      const fd = new FormData();
+      fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);
+      fd.append("file", this.files[0]);
+      const url = this.$store.getters.cloudinaryUploadUrl;
+      const config = {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      };
+
+      axios
+        .post(url, fd, config)
+        .then(res => {
+          this.currentPage.image = `${res.data.public_id}.${res.data.format}`;
+          this.updateCharacter();
+        })
+        .catch(err => {
+          console.log("Upload error", err);
+        });
+    },
+
+    updatePage() {
+      console.log("Update page", this.currentPage);
+      this.$store.dispatch("changePage", this.currentPage);
+      // this.$router.push("/admin/editchapter");
+    }
   },
   computed: {
     ...mapGetters(["currentPage"])

@@ -59,7 +59,21 @@ const mutations = {
 };
 
 const actions = {
+  changePage({ commit }, page) {
+    console.log("Change page. Chapter is", state.currentChapter);
+    let url = `${API_ROOT_URL}/changepage`;
+    axios
+      .post(url, page)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
   setCurrentPage({ commit }, page) {
+    page.chapterId = state.chapter._id;
     commit("currentPage", page);
   },
 
