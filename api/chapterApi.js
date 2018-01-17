@@ -56,7 +56,7 @@ let chapter = (app, db, cloudinary) => {
   });
 
   app.post("/api/page", (req, res) => {
-    console.log(req.body);
+    console.log("Add page", req.body);
     const chapterId = req.body.chapterId;
     const page = {
       text: req.body.text,

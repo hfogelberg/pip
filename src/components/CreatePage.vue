@@ -8,7 +8,7 @@
       </li>
     </ul>
 
-    <h2 class="u-center-text u-margin-bottom-medium">Ny sida</h2>
+    <h2 class="u-center-text u-margin-bottom-medium">Ny sida i {{chapter.title}}</h2>
 
     <form class="form">
       <div class="row form__form-row">
@@ -27,7 +27,7 @@
           </label>
         </div>
         <div class="col-2-of-3">
-          <textarea name="text" class="textarea" id="text" cols="80" v-model="text"></textarea>
+          <textarea name="text" class="textarea" id="text" cols="80" rows="40" v-model="text"></textarea>
         </div>
       </div>
 
@@ -38,7 +38,7 @@
           </label>
         </div>
         <div class="col-2-of-3">
-          <input type="text" name="pageNumber" id="pageNumber" v-model="pageNumber">
+          <input type="number" name="pageNumber" id="pageNumber" v-model="nextPageNumber">
         </div>
       </div>
       
@@ -64,6 +64,7 @@
 
 <script>
 import axios from "axios";
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -75,15 +76,8 @@ export default {
     };
   },
 
-  created() {
-    const chapterId = this.$route.params.id;
-    this.$store.dispatch("getNumPages", chapterId);
-  },
-
   computed: {
-    pageNumber() {
-      return this.$store.getters.numPages + 1;
-    }
+    ...mapGetters(["chapter", "nextPageNumber"])
   },
 
   methods: {
@@ -108,7 +102,7 @@ export default {
           const page = {
             chapterId: chapterId,
             text: this.text,
-            pageNumber: this.$store.getters.numPages + 1,
+            pageNumber: this.nextPageNumber,
             image: `${res.data.public_id}.${res.data.format}`
           };
 

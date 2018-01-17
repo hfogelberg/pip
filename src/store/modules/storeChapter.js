@@ -3,17 +3,12 @@ import { API_ROOT_URL } from "../../settings";
 import axios from "axios";
 
 const state = {
-  currentPage: {},
   chapters: [],
   chapter: {},
   chapterNames: []
 };
 
 const getters = {
-  currentPage: state => {
-    return state.currentPage;
-  },
-
   chapterNames: state => {
     return state.chapterNames;
   },
@@ -28,10 +23,6 @@ const getters = {
 };
 
 const mutations = {
-  currentPage: (state, page) => {
-    state.currentPage = page;
-  },
-
   chapterNames: (state, chapterNames) => {
     state.chapterNames = chapterNames;
   },
@@ -59,24 +50,6 @@ const mutations = {
 };
 
 const actions = {
-  changePage({ commit }, page) {
-    console.log("Change page. Chapter is", state.currentChapter);
-    let url = `${API_ROOT_URL}/changepage`;
-    axios
-      .post(url, page)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },
-
-  setCurrentPage({ commit }, page) {
-    page.chapterId = state.chapter._id;
-    commit("currentPage", page);
-  },
-
   createChapter({ commit }, chapter) {
     let url = `${API_ROOT_URL}/chapter`;
     axios
@@ -109,7 +82,11 @@ const actions = {
       .get(url)
       .then(res => {
         console.log("CHAPTER", res.data);
+        console.log("PAGES", res.data.chapter.pages);
+        console.log("NUM PAGES", res.data.chapter.pages.length);
         commit("chapter", res.data.chapter);
+        commit("numPages", res.data.chapter.pages.length);
+        commit("nextPageNumber", res.data.chapter.pages.length + 2);
       })
       .catch(err => {
         console.log(err);
