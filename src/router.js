@@ -13,6 +13,7 @@ import CreatePage from "./components/CreatePage";
 import Chapters from "./components/Chapters";
 import Chapter from "./components/Chapter";
 import Character from "./components/Character";
+import EditPage from "./components/EditPage";
 
 function redirectIfNotAuth(to, from, next) {
   const cookie = document.cookie.match(
@@ -68,6 +69,11 @@ const router = new VueRouter({
     {
       path: "/admin/addPage/:id",
       component: CreatePage,
+      beforeEnter: redirectIfNotAuth
+    },
+    {
+      path: "/admin/editpage",
+      component: EditPage,
       beforeEnter: redirectIfNotAuth
     },
     {

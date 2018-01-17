@@ -3,12 +3,17 @@ import { API_ROOT_URL } from "../../settings";
 import axios from "axios";
 
 const state = {
+  currentPage: {},
   chapters: [],
   chapter: {},
   chapterNames: []
 };
 
 const getters = {
+  currentPage: state => {
+    return state.currentPage;
+  },
+
   chapterNames: state => {
     return state.chapterNames;
   },
@@ -23,6 +28,10 @@ const getters = {
 };
 
 const mutations = {
+  currentPage: (state, page) => {
+    state.currentPage = page;
+  },
+
   chapterNames: (state, chapterNames) => {
     state.chapterNames = chapterNames;
   },
@@ -50,6 +59,10 @@ const mutations = {
 };
 
 const actions = {
+  setCurrentPage({ commit }, page) {
+    commit("currentPage", page);
+  },
+
   createChapter({ commit }, chapter) {
     let url = `${API_ROOT_URL}/chapter`;
     axios

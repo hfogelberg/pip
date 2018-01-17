@@ -1,6 +1,6 @@
 <template>
   <div class="edit-page">
-    <h2 class="u-center-text u-margin-bottom-medium">Ny sida</h2>
+    <h2 class="u-center-text u-margin-bottom-medium">Ändra sida {{this.currentPage.pageNumber}}</h2>
     <form>
       <ul class="flex-outer">
         <li>
@@ -9,16 +9,16 @@
         </li>
         <li>
           <label for="text">Text</label>
-          <textarea name="text" rows="4" id="text" cols="80" v-model="text"></textarea>
+          <textarea name="text" rows="4" id="text" cols="80" v-model="this.currentPage.text"></textarea>
         </li>
 
         <li>
           <label for="image">Sidnummer</label>
-          <input type="text" name="pageNumber" id="pageNumber" v-model="pageNumber">
+          <input type="text" name="pageNumber" id="pageNumber" v-model="this.currentPage.pageNumber">
         </li>
 
         <li>
-          <button type="button" name="button" id="save" class="btn-form btn-add" @click="save">Spara</button>
+          <button type="button" name="button" id="save" class="btn btn-save-form" @click="update">Spara</button>
         </li>
       </ul>
     </form>
@@ -26,7 +26,15 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  methods: {
+    update() {}
+  },
+  computed: {
+    ...mapGetters(["currentPage"])
+  }
+};
 </script>
 
 <style lang="scss" scoped>

@@ -6,14 +6,13 @@ import config from "./modules/storeConfig";
 import user from "./modules/storeUser";
 import character from "./modules/storeCharacter";
 import chapter from "./modules/storeChapter";
-import page from "./modules/storePage";
+// import page from "./modules/storePage";
 
 export const store = new Vuex.Store({
   modules: {
     config,
     user,
     character,
-    chapter,
-    page
+    chapter
   }
 });

@@ -47,7 +47,8 @@ export default {
     },
     editPage(page) {
       console.log("Edit page", page);
-      this.$store.dispatch();
+      this.$store.dispatch("setCurrentPage", page);
+      this.$router.push("/admin/editpage");
     }
   },
 

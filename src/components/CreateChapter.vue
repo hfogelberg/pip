@@ -1,23 +1,35 @@
 <template>
   <div>
     <h2 class="u-center-text u-margin-bottom-medium">Nytt kapitel</h2>
-    <form>
-      <ul class="flex-outer">
-        <li>
-          <label for="title">Rubrik</label>
+    <form class="form">
+      <div class="row">
+        <div class="col-1-of-3 form-row__label-container">
+          <label class="form_label" for="title">Rubrik</label>
+        </div>
+        <div class="col-2-of-3">
           <input type="text" name="title" id="title" v-model="title">
-        </li>
-        <li>
-          <label for="image">Bild</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1-of-3 form-row__label-container">
+          <label for="image" class="form_label" >Bild</label>
+        </div>
+        <div class="col-2-of-3">
           <input @change="uploadImage" type="file" name="photo" accept="image/*">
-        </li>
-        <li>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1-of-3"></div>
+        <div class="col-2-of-3">
           <button type="button" name="button" id="save" class="btn btn-add" @click="save">Spara</button>
-        </li>
-        <li>
+        </div>
+      </div>
+      <div class="row form__row">
+        <div class="col-1-of-3"></div>
+        <div class="col-2-of-3">
           <a href="/admin/chapters" class="btn btn-cancel">Avbryt</a>
-        </li>
-      </ul>
+        </div>
+      </div>
     </form>
   </div>
 </template>
