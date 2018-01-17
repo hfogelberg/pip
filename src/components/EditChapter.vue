@@ -31,26 +31,30 @@
           <img class= "thumbImage" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + page.image" v-bind:alt="page.image">
         </td>
         <td class="text">{{page.text}}</td>
-        <td>Ändra</td>
+        <td class="edit"><button class="btn btn-edit" @click="editPage(page)">Ändra</button></td>
       </tr>
     </table>
   </section>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   methods: {
     refresh() {
       this.$store.dispatch("getChapterById", this.chapter._id);
+    },
+    editPage(page) {
+      console.log("Edit page", page);
+      this.$store.dispatch();
     }
   },
 
   computed: {
     ...mapGetters(["chapter"])
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -66,7 +70,11 @@ td.text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: $color-text-main
+  color: $color-text-main;
+}
+
+td.edit {
+  text-align: center;
 }
 
 .btn-edit {

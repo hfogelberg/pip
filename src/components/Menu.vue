@@ -16,7 +16,8 @@
   </header>
 </template>
 
-<style lang="scss" scoped>@import "../sass/main.scss";
+<style lang="scss" scoped>
+@import "../sass/main.scss";
 header {
   position: fixed;
   left: 0;

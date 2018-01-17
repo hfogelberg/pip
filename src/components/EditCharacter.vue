@@ -1,6 +1,16 @@
 <template>
   <div class="edit-character">
-    <h2>Ändra {{character.name}}</h2>
+    <ul class="toolbar">
+      <li>
+        <router-link to="/admin/chapters">
+          <img src="../assets/img/back.svg">
+        </router-link>
+      </li>
+    </ul>
+
+    <h2 class="u-center-text u-margin-bottom-medium">
+      Ändra {{character.name}}
+    </h2>
 
       <form>
       <ul class="flex-outer">
@@ -17,10 +27,10 @@
           <textarea name="description" rows="4" id="description" cols="80" v-model="character.description"></textarea>
         </li>
         <li>
-          <button type="button" class="btn-form btn-save-form" name="button" id="save" @click="update">Spara</button>
+          <button type="button" class="btn btn-save-form" name="button" id="save" @click="update">Spara</button>
         </li>
         <li>
-          <button type="button" class="btn-form btn-warning" name="btn-delet" id="delete" @click="deleteCharacter">Ta bort</button>
+          <button type="button" class="btn btn-warning" name="btn-delet" id="delete" @click="deleteCharacter">Ta bort</button>
         </li>
       </ul>
     </form>
@@ -28,7 +38,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import axios from "axios";
 
 export default {
@@ -38,15 +48,15 @@ export default {
       imageSrc: "",
       files: [],
       hasImage: false
-    }
+    };
   },
   methods: {
-    uploadImage(e){
+    uploadImage(e) {
       this.hasImage = !this.hasImage;
       this.files = e.target.files;
     },
 
-    update(){
+    update() {
       if (this.hasImage) {
         this.imageToCloud();
       } else {
@@ -59,15 +69,18 @@ export default {
       fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);
       fd.append("file", this.files[0]);
       const url = this.$store.getters.cloudinaryUploadUrl;
-      const config = {headers: {"Content-Type": "application/x-www-form-urlencoded"}}
+      const config = {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      };
 
-      axios.post(url, fd, config)
-        .then((res)=>{
-          this.character.image = `${res.data.public_id}.${res.data.format}`
+      axios
+        .post(url, fd, config)
+        .then(res => {
+          this.character.image = `${res.data.public_id}.${res.data.format}`;
           this.updateCharacter();
         })
-        .catch((err)=>{
-          console.log("Upload error", err)
+        .catch(err => {
+          console.log("Upload error", err);
         });
     },
 
@@ -85,9 +98,9 @@ export default {
   },
 
   computed: {
-  ...mapGetters(['character'])
+    ...mapGetters(["character"])
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
