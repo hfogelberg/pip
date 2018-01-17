@@ -56,7 +56,6 @@ export default {
     },
 
     editCharacter(character) {
-      console.log("Edit", character);
       this.$store.dispatch("setCurrentCharacter", character);
       this.$router.push("/admin/editcharacter");
     }

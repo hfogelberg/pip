@@ -82,7 +82,6 @@ export default {
 
   methods: {
     uploadImage(e) {
-      console.log("Upload");
       this.files = e.target.files;
     },
 
@@ -105,8 +104,6 @@ export default {
             pageNumber: this.nextPageNumber,
             image: `${res.data.public_id}.${res.data.format}`
           };
-
-          console.log(page);
 
           this.$store.dispatch("createPage", page);
           this.$router.push("/admin/editchapter");

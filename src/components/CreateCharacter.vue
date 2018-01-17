@@ -83,8 +83,6 @@ export default {
             image: `${res.data.public_id}.${res.data.format}`
           };
 
-          console.log(character);
-
           this.$store.dispatch("createCharacter", character);
           this.$router.push("/admin/characters");
         })

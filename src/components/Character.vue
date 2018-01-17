@@ -19,18 +19,16 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   created() {
-    const id = this.$route.params.id;
-    console.log("CREATED. Id: " + id);
-    this.$store.dispatch("getCharacterById", id)
+    this.$store.dispatch("getCharacterById", id);
   },
   computed: {
     ...mapGetters(["character"])
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

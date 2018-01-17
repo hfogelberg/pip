@@ -104,14 +104,12 @@ export default {
         });
     },
 
-    updateCharacter() {
-      console.log("UPDATE CHARACTER", this.character);
+    updateCharacter() {this.character);
       this.$store.dispatch("changeCharacter", this.character);
       this.$router.push("/admin/characters");
     },
 
     deleteCharacter() {
-      console.log("Delete character");
       this.$store.dispatch("deleteCharacter", this.character._id);
       this.$router.push("/admin/characters");
     }

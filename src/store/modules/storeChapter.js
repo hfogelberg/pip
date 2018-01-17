@@ -32,7 +32,6 @@ const mutations = {
   },
 
   chapter: (state, chapter) => {
-    console.log("Chapter mutation");
     state.chapter = chapter;
   },
 
@@ -76,14 +75,10 @@ const actions = {
   },
 
   getChapterById({ commit }, id) {
-    console.log("*** GET CHAPTER BY ID *** " + id);
     let url = `${API_ROOT_URL}/chapters/${id}`;
     axios
       .get(url)
       .then(res => {
-        console.log("CHAPTER", res.data);
-        console.log("PAGES", res.data.chapter.pages);
-        console.log("NUM PAGES", res.data.chapter.pages.length);
         commit("chapter", res.data.chapter);
         commit("numPages", res.data.chapter.pages.length);
         commit("nextPageNumber", res.data.chapter.pages.length + 2);

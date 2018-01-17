@@ -93,9 +93,8 @@ export default {
     },
 
     updatePage() {
-      console.log("Update page", this.currentPage);
+      this.currentPage);
       this.$store.dispatch("changePage", this.currentPage);
-      // this.$router.push("/admin/editchapter");
     }
   },
   computed: {
