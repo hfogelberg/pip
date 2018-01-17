@@ -12,7 +12,10 @@
           <input @change="uploadImage" type="file" name="photo" accept="image/*">
         </li>
         <li>
-          <button type="button" name="button" id="save" @click="save">Spara</button>
+          <button type="button" name="button" id="save" class="btn btn-add" @click="save">Spara</button>
+        </li>
+        <li>
+          <a href="/admin/chapters" class="btn btn-cancel">Avbryt</a>
         </li>
       </ul>
     </form>
@@ -28,42 +31,43 @@ export default {
       imageUrl: "",
       imageSrc: "",
       files: [],
-      title: "",
-    }
+      title: ""
+    };
   },
 
   methods: {
     uploadImage(e) {
-      console.log("Upload");
       this.files = e.target.files;
     },
-    
+
     save() {
       const fd = new FormData();
       fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);
       fd.append("file", this.files[0]);
       const url = this.$store.getters.cloudinaryUploadUrl;
-      const config = {headers: {"Content-Type": "application/x-www-form-urlencoded"}}
+      const config = {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      };
 
-      axios.post(url, fd, config)
-        .then((res)=>{
+      axios
+        .post(url, fd, config)
+        .then(res => {
           const chapter = {
             title: this.title,
             image: `${res.data.public_id}.${res.data.format}`
-          }
+          };
 
-          console.log(chapter)
+          console.log(chapter);
 
           this.$store.dispatch("createChapter", chapter);
           this.$router.push("/admin/chapters");
         })
-        .catch((err)=>{
-          console.log("Upload error", err)
+        .catch(err => {
+          console.log("Upload error", err);
         });
     }
   }
-}
-
+};
 </script>
 
 <style lang="scss" scoped>

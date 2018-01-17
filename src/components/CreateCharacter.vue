@@ -15,7 +15,10 @@
           <textarea name="description" rows="4" id="description" cols="80" v-model="description"></textarea>
         </li>
         <li>
-          <button type="button" name="button" id="save" class="btn-form btn-add" @click="save">Spara</button>
+          <button type="button" name="button" id="save" class="btn btn-add" @click="save">Spara</button>
+        </li>
+        <li>
+          <a href="/admin/characters" class="btn btn-cancel">Avbryt</a>
         </li>
       </ul>
     </form>
@@ -33,7 +36,7 @@ export default {
       files: [],
       name: "",
       description: ""
-    }
+    };
   },
 
   methods: {
@@ -41,34 +44,36 @@ export default {
       console.log("Upload");
       this.files = e.target.files;
     },
-    
+
     save() {
       const fd = new FormData();
       fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);
       fd.append("file", this.files[0]);
       const url = this.$store.getters.cloudinaryUploadUrl;
-      const config = {headers: {"Content-Type": "application/x-www-form-urlencoded"}}
+      const config = {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      };
 
-      axios.post(url, fd, config)
-        .then((res)=>{
+      axios
+        .post(url, fd, config)
+        .then(res => {
           const character = {
             name: this.name,
             description: this.description,
             image: `${res.data.public_id}.${res.data.format}`
-          }
+          };
 
-          console.log(character)
+          console.log(character);
 
           this.$store.dispatch("createCharacter", character);
           this.$router.push("/admin/characters");
         })
-        .catch((err)=>{
-          console.log("Upload error", err)
+        .catch(err => {
+          console.log("Upload error", err);
         });
     }
   }
-}
-
+};
 </script>
 
 <style lang="scss" scoped>

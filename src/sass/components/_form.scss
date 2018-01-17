@@ -60,31 +60,12 @@
 
 .flex-outer li button {
     margin-left: auto;
-    padding: 0.5rem 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.09rem;
-    border-radius: 2px;
+}
+
+.flex-outer li a {
+    margin-left: auto;
 }
 
 .flex-inner li {
     width: 8rem;
-}
-
-button.btn-form {
-    color: $color-white;
-    font-size: $font-size-default;
-    padding: $gutter-xsmall, $gutter-small;
-    border-radius: 1.5rem;
-}
-
-button.btn-add {
-    background-color: $color-submit;
-}
-
-button.btn-save-form {
-    background-color: $color-submit;
-}
-
-button.btn-warning {
-    background-color: $color-warning;
 }
