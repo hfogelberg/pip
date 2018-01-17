@@ -1,26 +1,46 @@
 <template>
   <div>
-    <form>
-      <ul class="flex-outer">
-        <li>
-          <label for="title">Namn</label>
-          <input type="text" name="name" id="name" v-model="name">
-        </li>
-        <li>
-          <label for="image">Bild</label>
-          <input @change="uploadImage" type="file" name="photo" accept="image/*">
-        </li>
-        <li>
-          <label for="comment">BesKrivning</label>
-          <textarea name="description" rows="4" id="description" cols="80" v-model="description"></textarea>
-        </li>
-        <li>
-          <button type="button" name="button" id="save" class="btn btn-add" @click="save">Spara</button>
-        </li>
-        <li>
-          <a href="/admin/characters" class="btn btn-cancel">Avbryt</a>
-        </li>
-      </ul>
+  <h2 class="u-center-text u-margin-bottom-medium">Ny karaktär</h2>
+    <form class="form">
+        <div class="row form__form-row">
+          <div class="col-1-of-3 form-row__label-container">
+            <label for="title" class="form_label">Namn</label>
+          </div>
+          <div class="col-2-of-3">
+            <input type="text" name="name" id="name" v-model="name">
+          </div>
+        </div>
+        <div class="row form__form-row">
+          <div class="col-1-of-3 form-row__label-container">
+            <label for="image" class="form_label">Bild</label>
+          </div>
+          <div class="col-2-of-3">
+            <input @change="uploadImage" type="file" name="photo" accept="image/*">
+          </div>
+        </div>
+        <div class="row form__form-row">
+          <div class="col-1-of-3 form-row__label-container">
+            <label for="comment" class="form_label">
+              Beskrivning
+            </label>
+          </div>
+          <div class="col-2-of-3">
+            <textarea name="description" rows="4" id="description" cols="80" v-model="description"></textarea>
+          </div>
+        </div>
+        <div class="row form__form-row">
+          <div class="col-1-of-3 form-row__label-container">&ZeroWidthSpace; </div>
+          <div class="col-2-of-3">
+            <button type="button" name="button" id="save" class="btn btn-add" @click="save">Spara</button>
+          </div>
+        </div>
+        <div class="row form__form-row">
+          <div class="col-1-of-3 form-row__label-container">&ZeroWidthSpace; </div>
+          <div class="col-2-of-3">
+            <a href="/admin/characters" class="btn btn-cancel">Avbryt</a>
+          </div>
+        </div>
+      
     </form>
   </div>
 </template>

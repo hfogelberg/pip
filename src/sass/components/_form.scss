@@ -1,22 +1,26 @@
-.form__form-row {
-  line-height: 2rem;
-}
-
 .form_label {
-  color: $color-black;
-  font-size: 1.4rem;
+    color: $color-black;
+    font-size: 1.4rem;
 }
 
 .form-row__label-container {
-  padding-left: 1rem;
-  text-align: right;
+    padding-left: 1rem;
+    text-align: right;
 }
 
-input:not([type="checkbox"]),
+input,
 textarea {
-  padding: 0.6rem;
-  font-size: 1.2rem;
-  border-radius: 4px;
-  outline: none;
-  width: 70%;
+    padding: 0.6rem;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    outline: none;
+}
+
+input[type="text"],
+textarea {
+    width: 90%;
+}
+
+input[type="number"] {
+    width: 6ch;
 }

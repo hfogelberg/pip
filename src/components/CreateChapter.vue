@@ -2,7 +2,7 @@
   <div>
     <h2 class="u-center-text u-margin-bottom-medium">Nytt kapitel</h2>
     <form class="form">
-      <div class="row">
+      <div class="row form__form-row">
         <div class="col-1-of-3 form-row__label-container">
           <label class="form_label" for="title">Rubrik</label>
         </div>
@@ -10,7 +10,7 @@
           <input type="text" name="title" id="title" v-model="title">
         </div>
       </div>
-      <div class="row">
+      <div class="row form__form-row">
         <div class="col-1-of-3 form-row__label-container">
           <label for="image" class="form_label" >Bild</label>
         </div>
@@ -18,14 +18,14 @@
           <input @change="uploadImage" type="file" name="photo" accept="image/*">
         </div>
       </div>
-      <div class="row">
-        <div class="col-1-of-3"></div>
+      <div class="row form__form-row">
+        <div class="col-1-of-3">ZeroWidthSpace;</div>
         <div class="col-2-of-3">
           <button type="button" name="button" id="save" class="btn btn-add" @click="save">Spara</button>
         </div>
       </div>
       <div class="row form__row">
-        <div class="col-1-of-3"></div>
+        <div class="col-1-of-3">ZeroWidthSpace;</div>
         <div class="col-2-of-3">
           <a href="/admin/chapters" class="btn btn-cancel">Avbryt</a>
         </div>

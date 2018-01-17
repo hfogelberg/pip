@@ -12,27 +12,47 @@
       Ändra {{character.name}}
     </h2>
 
-      <form>
-      <ul class="flex-outer">
-        <li>
-          <label for="title">Namn</label>
+    <form class="form">
+      <div class="row form__form-row">
+        <div class="col-1-of-3 form-row__label-container">
+          <label for="title" class="form_label">Namn</label>
+        </div>
+        <div class="col-2-of-3">
           <input type="text" name="name" id="name" v-model="character.name">
-        </li>
-        <li>
-          <label for="image">Bild</label>
+        </div>
+      </div>
+      <div class="row form__form-row">
+        <div class="col-1-of-3 form-row__label-container">
+          <label for="image" class="form_label">Bild</label>
+        </div>
+        <div class="col-2-of-3">
           <input @change="uploadImage" type="file" name="photo" accept="image/*">
-        </li>
-        <li>
-          <label for="comment">BesKrivning</label>
+        </div>
+      </div>
+      <div class="row form__form-row">
+        <div class="col-1-of-3 form-row__label-container">
+          <label for="comment" class="form_label">Beskrivning</label>
+        </div>
+        <div class="col-2-of-3">
           <textarea name="description" rows="4" id="description" cols="80" v-model="character.description"></textarea>
-        </li>
-        <li>
+        </div>
+      </div>
+      <div class="row form__form-row">
+        <div class="col-1-of-3 form-row__label-container">
+          &ZeroWidthSpace;
+        </div>
+        <div class="col-2-of-3">
           <button type="button" class="btn btn-save-form" name="button" id="save" @click="update">Spara</button>
-        </li>
-        <li>
+        </div>
+      </div>
+      <div class="row form__form-row">
+        <div class="col-1-of-3 form-row__label-container">
+          &ZeroWidthSpace;
+        </div>
+        <div class="col-2-of-3">
           <button type="button" class="btn btn-warning" name="btn-delet" id="delete" @click="deleteCharacter">Ta bort</button>
-        </li>
-      </ul>
+        </div>
+      </div>
     </form>
   </div>
 </template>

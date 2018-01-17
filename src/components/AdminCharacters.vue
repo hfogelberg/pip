@@ -43,29 +43,29 @@
 </template>
 
 <script>
-  import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
-  export default {
-    created() {
+export default {
+  created() {
+    this.$store.dispatch("getCharacters");
+  },
+
+  methods: {
+    refresh() {
       this.$store.dispatch("getCharacters");
     },
 
-    methods: {
-      refresh() {
-        this.$store.dispatch("getCharacters");
-      },
-
-      editCharacter(character) {
-        console.log("Edit", character)
-        this.$store.dispatch("setCurrentCharacter", character);
-        this.$router.push("/admin/editcharacter");
-      }
-    },
-
-    computed: {
-      ...mapGetters(['characters'])
+    editCharacter(character) {
+      console.log("Edit", character);
+      this.$store.dispatch("setCurrentCharacter", character);
+      this.$router.push("/admin/editcharacter");
     }
+  },
+
+  computed: {
+    ...mapGetters(["characters"])
   }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -84,7 +84,7 @@ td.description {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: $color-text-main
+  color: $color-text-main;
 }
 .btn-edit-char {
   background-color: $color-btn-edit;
