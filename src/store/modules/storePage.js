@@ -69,13 +69,6 @@ const actions = {
       });
   },
 
-  setCurrentPage({
-    commit
-  }, page) {
-    page.chapterId = state.chapter._id;
-    commit("currentPage", page);
-  },
-
   createPage({
     commit
   }, page) {
@@ -87,6 +80,25 @@ const actions = {
       })
       .catch(err => {
         console.log("Create page error", err);
+      });
+  },
+
+  removePage({
+    commit
+  }) {
+    console.log("Remove page action", state.currentPage);
+    let url = `${API_ROOT_URL}/removepage`;
+    console.log(url);
+
+    axios.post(url, {
+        chapterId: state.currentPage.chapterId,
+        pageId: state.currentPage._id
+      })
+      .then((res) => {
+
+      })
+      .catch((err) => {
+
       });
   }
 };

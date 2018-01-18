@@ -40,7 +40,12 @@
           &ZeroWidthSpace;
         </div>
         <div class="col-2-of-3">
-          <button type="button" name="button" id="save" class="btn btn-save-form" @click="update">Spara</button>
+          <div class="button-container">
+            <button type="button" class="btn btn-save-form" @click="update">Spara</button>
+          </div>
+          <div class="button-container">
+            <button type="button" class="btn btn-warning" @click="removePage">Ta bort</button>
+          </div>
         </div>
       </div>
     </form>
@@ -70,6 +75,11 @@ export default {
       } else {
         this.updatePage();
       }
+    },
+
+    removePage() {
+      this.$store.dispatch("removePage");
+      this.$router.push("admin/chapters");
     },
 
     imageToCloud() {
@@ -104,4 +114,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "../sass/main.scss";
+
+.button-container {
+  margin-top: 3rem;
+}
 </style>
