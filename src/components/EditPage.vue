@@ -8,7 +8,7 @@
       </li>
     </ul>
 
-    <h2 class="u-center-text u-margin-bottom-medium">Ändra sida {{currentPage.pageNumber}}</h2>
+    <h2 class="secondary-header">Ändra sida {{currentPage.pageNumber}}</h2>
 
     <form class="form">
       <div class="row form__form-row">

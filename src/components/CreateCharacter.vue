@@ -1,6 +1,6 @@
 <template>
   <div>
-  <h2 class="u-center-text u-margin-bottom-medium">Ny karaktär</h2>
+  <h2 class="secondary-header">Ny karaktär</h2>
     <form class="form">
         <div class="row form__form-row">
           <div class="col-1-of-3 form-row__label-container">
@@ -55,17 +55,38 @@ export default {
       imageSrc: "",
       files: [],
       name: "",
-      description: ""
+      description: "",
+      image: "",
+      hasImage: false
     };
   },
 
   methods: {
     uploadImage(e) {
-      console.log("Upload");
+      this.hasImage = !this.hasImage;
       this.files = e.target.files;
     },
 
     save() {
+      if (this.hasImage) {
+        this.imageToCloud();
+      } else {
+        this.saveCharacter();
+      };
+    },
+
+    saveCharacter() {
+      const character = {
+        name: this.name,
+        description: this.description,
+        image: this.image
+      };
+
+      this.$store.dispatch("createCharacter", character);
+      this.$router.push("/admin/characters");
+    },
+
+    imageToCloud() {
       const fd = new FormData();
       fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);
       fd.append("file", this.files[0]);
@@ -77,19 +98,14 @@ export default {
       axios
         .post(url, fd, config)
         .then(res => {
-          const character = {
-            name: this.name,
-            description: this.description,
-            image: `${res.data.public_id}.${res.data.format}`
-          };
-
-          this.$store.dispatch("createCharacter", character);
-          this.$router.push("/admin/characters");
+          this.image = `${res.data.public_id}.${res.data.format}`;
+          this.saveCharacter();
         })
         .catch(err => {
           console.log("Upload error", err);
         });
-    }
+    },
+
   }
 };
 </script>

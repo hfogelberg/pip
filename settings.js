@@ -9,9 +9,8 @@ const CLOUDINARY_ROOT_URL =
 const CLOUDINARY_UPLOAD_URL =
   "https://api.cloudinary.com/v1_1/golizzard/upload";
 const CLOUDINARY_THUMB_URL = "https://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/";
-
-const CLOUDINARY_LARGE_URL = "http://res.cloudinary.com/golizzard/image/upload/c_scale,w_380/v1514893300/"
-
+const CLOUDINARY_LARGE_URL = "https://res.cloudinary.com/golizzard/image/upload/c_scale,w_380/v1514893300/";
+const CLOUDINARY_BLURED_URL = "https://res.cloudinary.com/golizzard/image/upload/c_scale,w_10/v1514893300/"
 const CLOUDINARY_CLOUD_NAME = "golizzard";
 const CLOUDINARY_API_KEY = "925374862654622";
 const CLOUDINARY_API_SECRET = "doHBawwQUw7L2vYVKq5Dl9wbdUE";
@@ -31,6 +30,7 @@ module.exports = {
   CLOUDINARY_UPLOAD_PRESET,
   CLOUDINARY_LARGE_URL,
   CLOUDINARY_THUMB_URL,
+  CLOUDINARY_BLURED_URL,
   GOOGLE_CLIENT_ID,
   GOOGLE_CALLBACK_URL,
   PORT,

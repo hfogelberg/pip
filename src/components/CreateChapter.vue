@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="u-center-text u-margin-bottom-medium">Nytt kapitel</h2>
+    <h2 class="secondary-header">Nytt kapitel</h2>
     <form class="form">
       <div class="row form__form-row">
         <div class="col-1-of-3 form-row__label-container">
@@ -19,13 +19,13 @@
         </div>
       </div>
       <div class="row form__form-row">
-        <div class="col-1-of-3">ZeroWidthSpace;</div>
+        <div class="col-1-of-3 space">ZeroWidthSpace;</div>
         <div class="col-2-of-3">
           <button type="button" name="button" id="save" class="btn btn-add" @click="save">Spara</button>
         </div>
       </div>
       <div class="row form__row">
-        <div class="col-1-of-3">ZeroWidthSpace;</div>
+        <div class="col-1-of-3 space">ZeroWidthSpace;</div>
         <div class="col-2-of-3">
           <a href="/admin/chapters" class="btn btn-cancel">Avbryt</a>
         </div>
@@ -43,16 +43,35 @@ export default {
       imageUrl: "",
       imageSrc: "",
       files: [],
-      title: ""
+      title: "",
+      hasImage: false
     };
   },
 
   methods: {
     uploadImage(e) {
+      this.hasImage = !this.hasImage;
       this.files = e.target.files;
     },
 
     save() {
+      if (this.hasImage) {
+        this.imageToCloud();
+      } else {
+        this.saveChapter();
+      };
+    },
+
+    saveChapter() {
+      const chapter = {
+        title: this.title,
+        image: this.image
+      };
+      this.$store.dispatch("createChapter", chapter);
+      this.$router.push("/admin/chapters");
+    },
+
+    imageToCloud() {
       const fd = new FormData();
       fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);
       fd.append("file", this.files[0]);
@@ -64,24 +83,21 @@ export default {
       axios
         .post(url, fd, config)
         .then(res => {
-          const chapter = {
-            title: this.title,
-            image: `${res.data.public_id}.${res.data.format}`
-          };
-
-          console.log(chapter);
-
-          this.$store.dispatch("createChapter", chapter);
-          this.$router.push("/admin/chapters");
+          this.image = `${res.data.public_id}.${res.data.format}`;
+          this.saveChapter();
         })
         .catch(err => {
           console.log("Upload error", err);
         });
-    }
+    },
   }
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../sass/main.scss";
+
+.space {
+  color: $color-paper-light;
+}
 </style>

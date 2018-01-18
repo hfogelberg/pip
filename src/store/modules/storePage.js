@@ -1,5 +1,7 @@
 import Vue from "vue";
-import { API_ROOT_URL } from "../../settings";
+import {
+  API_ROOT_URL
+} from "../../settings";
 import axios from "axios";
 
 const state = {
@@ -10,25 +12,9 @@ const state = {
 };
 
 const getters = {
-  // isLastPage: state => {
-  //   if (state.pageId == state.pages.length - 1) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // },
-
   currentPage: state => {
     return state.currentPage;
   },
-
-  // pages: state => {
-  //   return state.chapter.pages;
-  // },
-
-  // pageNumber: state => {
-  //   return state.pageNumber;
-  // },
 
   nextPageNumber: state => {
     return state.nextPageNumber;
@@ -54,35 +40,23 @@ const mutations = {
 
   nextPageNumber: (state, num) => {
     state.nextPageNumber = num;
+  },
+
+  resetPageNumber: (state) => {
+    state.nextPageNumber = 0;
   }
-
-  // resetPage: state => {
-  //   state.pageNumber = 0;
-  // },
-
-  // previousPage: state => {
-  //   state.pageNumber = state.pageNumber - 1;
-  // },
-
-  // pages: (state, pages) => {
-  //   state.pages = pages;
-  // }
 };
 
 const actions = {
-  setCurrentPage({ commit }, page) {
+  setCurrentPage({
+    commit
+  }, page) {
     commit("currentPage", page);
   },
 
-  // firstPage({ commit }) {
-  //   commit("nextPage");
-  // },
-
-  // nextPage({ commit }) {
-  //   commit("previousPage");
-  // },
-
-  changePage({ commit }, page) {
+  changePage({
+    commit
+  }, page) {
     console.log("Change page. Chapter is", state.chapter._id);
     let url = `${API_ROOT_URL}/changepage`;
     axios
@@ -95,12 +69,16 @@ const actions = {
       });
   },
 
-  setCurrentPage({ commit }, page) {
+  setCurrentPage({
+    commit
+  }, page) {
     page.chapterId = state.chapter._id;
     commit("currentPage", page);
   },
 
-  createPage({ commit }, page) {
+  createPage({
+    commit
+  }, page) {
     let url = `${API_ROOT_URL}/page`;
     axios
       .post(url, page)

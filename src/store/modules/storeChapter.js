@@ -1,5 +1,7 @@
 import Vue from "vue";
-import { API_ROOT_URL } from "../../settings";
+import {
+  API_ROOT_URL
+} from "../../settings";
 import axios from "axios";
 
 const state = {
@@ -49,7 +51,9 @@ const mutations = {
 };
 
 const actions = {
-  createChapter({ commit }, chapter) {
+  createChapter({
+    commit
+  }, chapter) {
     let url = `${API_ROOT_URL}/chapter`;
     axios
       .post(url, chapter)
@@ -61,7 +65,9 @@ const actions = {
       });
   },
 
-  getChapterNames({ commit }) {
+  getChapterNames({
+    commit
+  }) {
     let url = `${API_ROOT_URL}/chapternames`;
     axios
       .get(url)
@@ -74,21 +80,26 @@ const actions = {
       });
   },
 
-  getChapterById({ commit }, id) {
+  getChapterById({
+    commit
+  }, id) {
     let url = `${API_ROOT_URL}/chapters/${id}`;
     axios
       .get(url)
       .then(res => {
         commit("chapter", res.data.chapter);
         commit("numPages", res.data.chapter.pages.length);
-        commit("nextPageNumber", res.data.chapter.pages.length + 2);
+        commit("resetPageNumber");
+        commit("nextPageNumber", res.data.chapter.pages.length + 1);
       })
       .catch(err => {
         console.log(err);
       });
   },
 
-  getCurrentChapter({ commit }) {
+  getCurrentChapter({
+    commit
+  }) {
     const id = state.currentChapter._id;
     console.log("*** Get Current Chapter *** " + id);
     let url = `${API_ROOT_URL}/chapters/${id}`;
@@ -103,7 +114,9 @@ const actions = {
       });
   },
 
-  getChapters({ commit }) {
+  getChapters({
+    commit
+  }) {
     let url = `${API_ROOT_URL}/chapters`;
     console.log(url);
     axios

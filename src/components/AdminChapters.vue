@@ -16,7 +16,7 @@
       </li>
     </ul>
 
-    <h2 class="u-center-text u-margin-bottom-medium">Admin kapitel</h2>
+    <h2 class="secondary-header">Admin kapitel</h2>
     <ul>
       <li v-for="chapter in chapters" class="u-center-text"> 
         <adminChapter :chapter="chapter"></adminChapter>

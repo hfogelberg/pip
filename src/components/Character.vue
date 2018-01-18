@@ -2,16 +2,16 @@
   <section class="character">
     <ul class="toolbar">
       <li>
-        <router-link to="/characters">
+        <button @click="leave" class="btn-transparent">
           <img src="../assets/img/back.svg">
-        </router-link>
+        </button>
       </li>
     </ul>
 
-    <h2 class="u-center-text u-margin-bottom-medium">{{character.name}}</h2>
+    <h2 class="secondary-header">{{character.name}}</h2>
     
-    <p class="paragraph character-description">
-      <img class= "image character-image" :src=" cloudinaryLargeUrl + character.image" v-bind:alt="character.name">
+    <p class="paragraph description">
+        <img class= "image character-image" :src=" cloudinaryLargeUrl + character.image" v-bind:alt="character.name" />
 
       {{character.description}}
     </p>
@@ -26,8 +26,14 @@ export default {
     const id = this.$route.params.id;
     this.$store.dispatch("getCharacterById", id);
   },
+  methods: {
+    leave() {
+      this.$store.dispatch("setCurrentCharacter", {});
+      this.$router.push("/characters");
+    }
+  },
   computed: {
-    ...mapGetters(["character", "cloudinaryLargeUrl"])
+    ...mapGetters(["character", "cloudinaryLargeUrl", "cloudinaryBluredUrl"])
   }
 };
 </script>
@@ -36,9 +42,9 @@ export default {
 @import "../sass/main.scss";
 
 .character-image {
-  height: 40vh;
   float: left;
-  border-radius: 5px;
-  padding: 0 $gutter-xsmall $gutter-xsmall 0;
+  bottom: 0;
+  margin: 0 $gutter-small $gutter-small 0;
 }
+
 </style>

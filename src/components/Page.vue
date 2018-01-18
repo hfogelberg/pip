@@ -24,7 +24,5 @@ export default {
 .chapter-image {
   float: left;
   border-radius: 5px;
-  margin: 0 $gutter-small $gutter-small 0;
-  box-shadow: 0 10px 20px rgba($color-black, 0.2);
 }
 </style>

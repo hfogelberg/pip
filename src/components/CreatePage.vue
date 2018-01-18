@@ -8,7 +8,7 @@
       </li>
     </ul>
 
-    <h2 class="u-center-text u-margin-bottom-medium">Ny sida i {{chapter.title}}</h2>
+    <h2 class="secondary-header">Ny sida i {{chapter.title}}</h2>
 
     <form class="form">
       <div class="row form__form-row">
@@ -56,8 +56,6 @@
           </button>
         </div>
       </div>
-      
-
     </form>
   </section>
 </template>
@@ -72,7 +70,9 @@ export default {
       imageUrl: "",
       imageSrc: "",
       files: [],
-      text: ""
+      text: "",
+      hasImage: false,
+      image: ""
     };
   },
 
@@ -82,10 +82,31 @@ export default {
 
   methods: {
     uploadImage(e) {
+      this.hasImage = !this.hasImage;
       this.files = e.target.files;
     },
 
     save() {
+      if (this.hasImage) {
+        this.imageToCloud();
+      } else {
+        this.savePage();
+      };
+    },
+
+    savePage() {
+      const page = {
+        chapterId: this.$route.params.id,
+        text: this.text,
+        pageNumber: this.nextPageNumber,
+        image: this.image
+      };
+
+      this.$store.dispatch("createPage", page);
+      this.$router.push("/admin/editchapter");
+    },
+
+    imageToCloud() {
       const fd = new FormData();
       fd.append("upload_preset", this.$store.getters.cloudinaryUploadPreset);
       fd.append("file", this.files[0]);
@@ -93,25 +114,17 @@ export default {
       const config = {
         headers: { "Content-Type": "application/x-www-form-urlencoded" }
       };
-      const chapterId = this.$route.params.id;
 
       axios
         .post(url, fd, config)
         .then(res => {
-          const page = {
-            chapterId: chapterId,
-            text: this.text,
-            pageNumber: this.nextPageNumber,
-            image: `${res.data.public_id}.${res.data.format}`
-          };
-
-          this.$store.dispatch("createPage", page);
-          this.$router.push("/admin/editchapter");
+          this.image = `${res.data.public_id}.${res.data.format}`;
+          this.savePage();
         })
         .catch(err => {
           console.log("Upload error", err);
         });
-    }
+    },
   }
 };
 </script>

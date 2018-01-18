@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Inloggning</h2>
+    <h2 class="secondary-header">Inloggning</h2>
     <a v-bind:href="this.uri"><img src="../assets/img/google-login.svg"></a>
   </div>
 </template>

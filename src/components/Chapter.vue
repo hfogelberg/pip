@@ -1,6 +1,6 @@
 <template>
   <section class="chapter">
-    <h2 class="u-center-text u-margin-bottom-small">
+    <h2 class="secondary-header">
       {{this.chapter.title}}
     </h2>
 

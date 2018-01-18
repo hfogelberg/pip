@@ -12,6 +12,7 @@ const state = {
   cloudinaryUploadPreset: "",
   cloudinaryLargeUrl: "",
   cloudinaryThumbUrl: "",
+  cloudinaryBluredUrl: "",
   googleClientId: "",
   googleCallbackUrl: ""
 };
@@ -36,8 +37,10 @@ const getters = {
     return state.cloudinaryLargeUrl;
   },
   cloudinaryThumbUrl: state => {
-    console.log("Fetching thumb url", state.cloudinaryThumbUrl);
     return state.cloudinaryThumbUrl;
+  },
+  cloudinaryBluredUrl: state => {
+    return state.cloudinaryBluredUrl;
   },
   googleClientId: state => {
     return state.googleClientId;
@@ -69,6 +72,9 @@ const mutations = {
   cloudinaryThumbUrl: (state, cloudinaryThumbUrl) => {
     state.cloudinaryThumbUrl = cloudinaryThumbUrl;
   },
+  cloudinaryBluredUrl: (state, cloudinaryBluredUrl) => {
+    state.cloudinaryBluredUrl = cloudinaryBluredUrl;
+  },
   googleClientId: (state, googleClientId) => {
     state.googleClientId = googleClientId;
   },
@@ -97,6 +103,7 @@ const actions = {
         );
         commit("cloudinaryLargeUrl", res.data.settings.cloudinaryLargeUrl);
         commit("cloudinaryThumbUrl", res.data.settings.cloudinaryThumbUrl);
+        commit("cloudinaryBluredUrl", res.data.settings.cloudinaryBluredUrl);
         commit("cloudinarySecret", res.data.settings.cloudinarySecret);
         commit("googleClientId", res.data.settings.googleClientId);
         commit("googleCallbackUrl", res.data.settings.googleCallbackUrl);

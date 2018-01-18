@@ -7,8 +7,12 @@ body {
     box-sizing: border-box;
 }
 
-h2 {
+.secondary-header {
     font-size: $font-size-large;
     color: $color-menu-dark;
     font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
 }
+
+.tertiary-header {}

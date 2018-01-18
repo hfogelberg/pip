@@ -8,7 +8,7 @@
       </li>
     </ul>
 
-    <h2 class="u-center-text u-margin-bottom-medium">Karaktärer</h2>
+    <h2 class="secondary-header">Karaktärer</h2>
     
     <ul class="chars-cards">
       <li v-for="character in characters"> 

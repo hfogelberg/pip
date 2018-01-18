@@ -18,13 +18,13 @@
       </li>
     </ul>
 
-    <h2 class="u-center-text u-margin-bottom-medium">{{chapter.title}}</h2>
+    <h2 class="secondary-header">{{chapter.title}}</h2>
 
-    <div class="centered-image-containter">
+    <div class="centered-image-containter" v-if="chapter.image">
       <img class= "image chapter-image" :src="'http://res.cloudinary.com/golizzard/image/upload/c_scale,w_120/v1514893300/' + chapter.image" v-bind:alt="chapter.name">
     </div>
 
-    <table class="tbl-edit-chapter">
+    <table class="tbl-edit-chapter" v-if="this.chapter.pages">
       <tr v-for="page in this.chapter.pages">
         <td>{{page.pageNumber}}</td>
         <td>

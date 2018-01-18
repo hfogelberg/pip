@@ -26,7 +26,7 @@ export default {
 @import "./sass/main.scss";
 
 .container {
-  margin-top: 5vw;
+  margin-top: 2rem;
   padding: 1vw;
 }
 </style>

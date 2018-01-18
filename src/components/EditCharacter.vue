@@ -8,7 +8,7 @@
       </li>
     </ul>
 
-    <h2 class="u-center-text u-margin-bottom-medium">
+    <h2 class="secondary-header">
       Ändra {{character.name}}
     </h2>
 

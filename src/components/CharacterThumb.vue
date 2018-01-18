@@ -1,8 +1,8 @@
 <template>
   <router-link :to="'/character/' + character._id" class="btn">
     <div class="thumb">
-      <img class= "image" :src="cloudinaryThumbUrl + character.image" v-bind:alt="character.name">
-      <h3>{{character.name}}</h3>
+      <img class= "image thumb-image" :src="cloudinaryThumbUrl + character.image" v-bind:alt="character.name">
+      <h3 class="tertiary-header">{{character.name}}</h3>
     </div>
   </router-link>
 </template>
