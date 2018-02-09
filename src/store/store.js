@@ -7,6 +7,7 @@ import user from "./modules/storeUser";
 import character from "./modules/storeCharacter";
 import chapter from "./modules/storeChapter";
 import page from "./modules/storePage";
+import art from "./modules/storeArt";
 
 export const store = new Vuex.Store({
   modules: {
@@ -14,6 +15,7 @@ export const store = new Vuex.Store({
     user,
     character,
     chapter,
-    page
+    page,
+    art
   }
 });

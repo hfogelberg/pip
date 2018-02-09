@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="create-character">
   <h2 class="secondary-header">Ny karaktär</h2>
     <form class="form">
         <div class="row form__form-row">

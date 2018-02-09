@@ -35,7 +35,7 @@ const router = new VueRouter({
     { path: "/", component: Index },
     { path: "/login", component: Login },
     { path: "/admin", component: Admin, beforeEnter: redirectIfNotAuth },
-    { path: "/admin/art", component: Admin },
+    { path: "/admin/art", component: AdminArtworks },
     { path: "/admin/createart", component: AddArtwork },
     { path: "/admin/characters", component: AdminCharacters, beforeEnter: redirectIfNotAuth},
     { path: "/admin/editcharacter", component: EditCharacter, beforeEnter: redirectIfNotAuth },

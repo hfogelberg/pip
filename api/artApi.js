@@ -13,17 +13,16 @@ let artwork = (app, db, cloudinary) => {
 
   app.post("/api/artwork", (req, res) => {
     let artwork = new Artwork({
-      title: req.body.title,
-      comment: req.body.comment,
-      isPriority: req.body.isPriority,
-      display: req.body.display,
-      image: req.body.image
+      title: req.body.artwork.title,
+      comment: req.body.artwork.comment,
+      isPriority: req.body.artwork.isPriority,
+      display: req.body.artwork.display,
+      image: req.body.artwork.image
     });
 
     artwork
       .save()
       .then(art => {
-        console.log("Create artwork OK!!");
         res.json({
           message: "Artwork saved",
           artwork: art

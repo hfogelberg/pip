@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link to="/admin/create" class='btn'>Lägg till</router-link>
+    <router-link to="/admin/createart" class='btn'>Lägg till</router-link>
     <br>
     <br>
     <table>
@@ -16,19 +16,19 @@
 </style>
 
 <script>
-import AdminThumb from "./AdminThumb";
+import {mapGetters} from "vuex";
+
+import ArtAdminThumb from "./ArtAdminThumb";
 
 export default {
-  mounted() {
+  created() {
     this.$store.dispatch("getArtworks");
   },
   components: {
-  'adminThumb': AdminThumb
+  'adminThumb': ArtAdminThumb
   },
   computed: {
-    artworks() {
-      return this.$store.getters.artworks;
-    }
+    ...mapGetters(["artworks"])
   }
 }
 </script>
