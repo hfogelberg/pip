@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../sass/main.scss";
+@import "../../../sass/main.scss";
 
 .chapter-name {
   font-size: $font-size-medium;

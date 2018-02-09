@@ -3,7 +3,7 @@
       <ul class="toolbar"> 
       <li>
         <router-link to="/">
-          <img src="../assets/img/back.svg">
+          <img src="../../assets/img/back.svg">
         </router-link>
       </li>
     </ul>
@@ -36,5 +36,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../sass/main.scss";
+@import "../../sass/main.scss";
 </style>

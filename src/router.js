@@ -2,15 +2,17 @@ import VueRouter from "vue-router";
 import Index from "./components/Index";
 import Login from "./components/Login";
 import Admin from "./components/admin/Admin";
-import AdminChapter from "./components/admin/AdminChapter";
-import AdminChapters from "./components/admin/AdminChapters";
-import AdminCharacters from "./components/admin/AdminCharacters";
-import CreateChapter from "./components/admin/CreateChapter";
-import CreateCharacter from "./components/adminCreateCharacter";
-import CreatePage from "./components/admin/CreatePage";
-import EditChapter from "./components/admin/EditChapter";
-import EditCharacter from "./components/admin/EditCharacter.vue";
-import EditPage from "./components/admin/EditPage";
+import AddArtwork from "./components/admin/art/AddArtwork";
+import AdminArtworks from "./components/admin/art/AdminArtworks";
+import AdminChapter from "./components/admin/book/AdminChapter";
+import AdminChapters from "./components/admin/book/AdminChapters";
+import AdminCharacters from "./components/admin/book/AdminCharacters";
+import CreateChapter from "./components/admin/book/CreateChapter";
+import CreateCharacter from "./components/admin/book/CreateCharacter";
+import CreatePage from "./components/admin/book/CreatePage";
+import EditChapter from "./components/admin/book/EditChapter";
+import EditCharacter from "./components/admin/book/EditCharacter.vue";
+import EditPage from "./components/admin/book/EditPage";
 import Chapter from "./components/book/Chapter";
 import Chapters from "./components/book/Chapters";
 import Character from "./components/book/Character";
@@ -33,6 +35,8 @@ const router = new VueRouter({
     { path: "/", component: Index },
     { path: "/login", component: Login },
     { path: "/admin", component: Admin, beforeEnter: redirectIfNotAuth },
+    { path: "/admin/art", component: Admin },
+    { path: "/admin/createart", component: AddArtwork },
     { path: "/admin/characters", component: AdminCharacters, beforeEnter: redirectIfNotAuth},
     { path: "/admin/editcharacter", component: EditCharacter, beforeEnter: redirectIfNotAuth },
     { path: "/admin/characters/create", component: CreateCharacter, beforeEnter: redirectIfNotAuth },

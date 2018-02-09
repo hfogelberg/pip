@@ -95,7 +95,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../sass/main.scss";
+@import "../../../sass/main.scss";
 
 .space {
   color: $color-paper-light;

@@ -3,7 +3,7 @@
     <ul class="toolbar"> 
       <li>
         <router-link to="/">
-          <img src="../assets/img/back.svg">
+          <img src="../../assets/img/back.svg">
         </router-link>
       </li>
     </ul>
@@ -36,7 +36,7 @@
 </script>
 
 <style lang="scss" scoped>
-@import "../sass/main.scss";
+@import "../../sass/main.scss";
 
 ul.chars-cards {
   list-style: none;

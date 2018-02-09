@@ -3,15 +3,15 @@
     <ul class="toolbar"> 
       <li>
         <router-link to="/admin/chapters/create">
-          <img src="../assets/img/add.svg">
+          <img src="../../../assets/img/add.svg">
         </router-link>
       </li>
       <li>
-        <button @click="refresh" class="btn-transparent"><img src="../assets/img/refresh.svg"></button>
+        <button @click="refresh" class="btn-transparent"><img src="../../../assets/img/refresh.svg"></button>
       </li>
       <li>
         <router-link to="/admin/">
-          <img src="../assets/img/back.svg">
+          <img src="../../../assets/img/back.svg">
         </router-link>
       </li>
     </ul>
@@ -49,5 +49,5 @@
 
 
 <style lang="scss" scoped>
-@import "../sass/main.scss";
+@import "../../../sass/main.scss";
 </style>

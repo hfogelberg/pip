@@ -8,10 +8,13 @@
       <li class="section-list-item u-center-text u-margin-bottom-small">
         <router-link to="/admin/chapters">Kapitel</router-link>
       </li>
+      <li class="section-list-item u-center-text u-margin-bottom-small">
+        <router-link to="/admin/art">Konstverk</router-link>
+      </li>
     </ul>
   </section>  
 </template>
 
 <style lang="scss" scoped>
-@import "../sass/main.scss";
+@import "../../sass/main.scss";
 </style>

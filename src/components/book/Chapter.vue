@@ -10,7 +10,7 @@
     <ul>
       <li>
         <router-link to="/chapters">
-          <img src="../assets/img/back.svg">
+          <img src="../../assets/img/back.svg">
         </router-link>
       </li>
       <li>
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../sass/main.scss";
+@import "../../sass/main.scss";
 
 .chapter {
   display: flex;

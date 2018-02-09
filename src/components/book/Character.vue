@@ -3,7 +3,7 @@
     <ul class="toolbar">
       <li>
         <button @click="leave" class="btn-transparent">
-          <img src="../assets/img/back.svg">
+          <img src="../../assets/img/back.svg">
         </button>
       </li>
     </ul>
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../sass/main.scss";
+@import "../../sass/main.scss";
 
 .character-image {
   float: left;

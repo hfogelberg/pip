@@ -1,68 +1,65 @@
 <template>
-  <section class="create-page">
+  <div class="edit-character">
     <ul class="toolbar">
       <li>
         <router-link to="/admin/chapters">
-          <img src="../assets/img/back.svg">
+          <img src="../../../assets/img/back.svg">
         </router-link>
       </li>
     </ul>
 
-    <h2 class="secondary-header">Ny sida i {{chapter.title}}</h2>
+    <h2 class="secondary-header">
+      Ändra {{character.name}}
+    </h2>
 
     <form class="form">
       <div class="row form__form-row">
         <div class="col-1-of-3 form-row__label-container">
-          <label for="title" class="form_label">Bild</label>
+          <label for="title" class="form_label">Namn</label>
+        </div>
+        <div class="col-2-of-3">
+          <input type="text" name="name" id="name" v-model="character.name">
+        </div>
+      </div>
+      <div class="row form__form-row">
+        <div class="col-1-of-3 form-row__label-container">
+          <label for="image" class="form_label">Bild</label>
         </div>
         <div class="col-2-of-3">
           <input @change="uploadImage" type="file" name="photo" accept="image/*">
         </div>
       </div>
-      
       <div class="row form__form-row">
         <div class="col-1-of-3 form-row__label-container">
-          <label for="title" class="form_label">
-            Text
-          </label>
+          <label for="comment" class="form_label">Beskrivning</label>
         </div>
         <div class="col-2-of-3">
-          <textarea name="text" class="textarea" id="text" cols="80" rows="40" v-model="text"></textarea>
+          <textarea name="description" rows="4" id="description" cols="80" v-model="character.description"></textarea>
         </div>
       </div>
-
-      <div class="row form__form-row">
-        <div class="col-1-of-3 form-row__label-container">
-          <label for="title" class="form_label">
-            Sidnummer
-          </label>
-        </div>
-        <div class="col-2-of-3">
-          <input type="number" name="pageNumber" id="pageNumber" v-model="nextPageNumber">
-        </div>
-      </div>
-      
       <div class="row form__form-row">
         <div class="col-1-of-3 form-row__label-container">
           &ZeroWidthSpace;
         </div>
         <div class="col-2-of-3">
-          <button type="button" 
-                  name="button" 
-                  id="save" 
-                  class="btn btn-save-form" 
-                  @click="save">
-            Spara
-          </button>
+          <button type="button" class="btn btn-save-form" name="button" id="save" @click="update">Spara</button>
+        </div>
+      </div>
+      <div class="row form__form-row">
+        <div class="col-1-of-3 form-row__label-container">
+          &ZeroWidthSpace;
+        </div>
+        <div class="col-2-of-3">
+          <button type="button" class="btn btn-warning" name="btn-delet" id="delete" @click="deleteCharacter">Ta bort</button>
         </div>
       </div>
     </form>
-  </section>
+  </div>
 </template>
 
 <script>
-import axios from "axios";
 import { mapGetters } from "vuex";
+import axios from "axios";
 
 export default {
   data() {
@@ -70,40 +67,21 @@ export default {
       imageUrl: "",
       imageSrc: "",
       files: [],
-      text: "",
-      hasImage: false,
-      image: ""
+      hasImage: false
     };
   },
-
-  computed: {
-    ...mapGetters(["chapter", "nextPageNumber"])
-  },
-
   methods: {
     uploadImage(e) {
       this.hasImage = !this.hasImage;
       this.files = e.target.files;
     },
 
-    save() {
+    update() {
       if (this.hasImage) {
         this.imageToCloud();
       } else {
-        this.savePage();
-      };
-    },
-
-    savePage() {
-      const page = {
-        chapterId: this.$route.params.id,
-        text: this.text,
-        pageNumber: this.nextPageNumber,
-        image: this.image
-      };
-
-      this.$store.dispatch("createPage", page);
-      this.$router.push("/admin/editchapter");
+        this.updateCharacter();
+      }
     },
 
     imageToCloud() {
@@ -118,17 +96,31 @@ export default {
       axios
         .post(url, fd, config)
         .then(res => {
-          this.image = `${res.data.public_id}.${res.data.format}`;
-          this.savePage();
+          this.character.image = `${res.data.public_id}.${res.data.format}`;
+          this.updateCharacter();
         })
         .catch(err => {
           console.log("Upload error", err);
         });
     },
+
+    updateCharacter() {
+      this.$store.dispatch("changeCharacter", this.character);
+      this.$router.push("/admin/characters");
+    },
+
+    deleteCharacter() {
+      this.$store.dispatch("deleteCharacter", this.character._id);
+      this.$router.push("/admin/characters");
+    }
+  },
+
+  computed: {
+    ...mapGetters(["character"])
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../sass/main.scss";
+@import "../../../sass/main.scss";
 </style>
