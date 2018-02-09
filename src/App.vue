@@ -1,20 +1,11 @@
 <template>
   <div id="app">
-    <appHeader></appHeader>
-    <div class="container">
-      <router-view></router-view>
-    </div>
+   <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Header from "./components/Header";
-
 export default {
-  components: {
-    appHeader: Header
-  },
-
   mounted() {
     console.log("App mounted");
     this.$store.dispatch("getConfig");
@@ -24,9 +15,4 @@ export default {
 
 <style lang="scss">
 @import "./sass/main.scss";
-
-.container {
-  margin-top: 2rem;
-  padding: 1vw;
-}
 </style>

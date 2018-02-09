@@ -1,6 +1,7 @@
 import VueRouter from "vue-router";
 import Index from "./components/Index";
 import Login from "./components/Login";
+import Artworks from "./components/art/Artworks";
 import Admin from "./components/admin/Admin";
 import AddArtwork from "./components/admin/art/AddArtwork";
 import AdminArtworks from "./components/admin/art/AdminArtworks";
@@ -33,6 +34,7 @@ const router = new VueRouter({
   mode: "history",
   routes: [
     { path: "/", component: Index },
+    { path: "/artworks", component: Artworks },
     { path: "/login", component: Login },
     { path: "/admin", component: Admin, beforeEnter: redirectIfNotAuth },
     { path: "/admin/art", component: AdminArtworks },

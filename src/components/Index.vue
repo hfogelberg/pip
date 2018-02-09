@@ -1,92 +1,67 @@
 <template>
-  <section class="index">
-      <h2 class="secondary-header">Index</h2>
-    <ul>
-      <li class="section-list-item u-center-text u-margin-bottom-small"><router-link to="/characters">Karaktärer</router-link></li>
-      <li class="section-list-item u-center-text u-margin-bottom-small"><router-link to="/chapters">Kapitel</router-link></li>
-    </ul>
-  </section>
+  <div class="index">
+    <div class="box">
+        <h1 class="primary-header">
+          <span class="primary-sub">Welcome to</span>
+          <span class="primary-main">Helena Fogelberg</span>
+          <span class="primary-main">Art</span>
+
+          <ul class="button-row">
+            <li>
+              <router-link to="/artworks">
+                Konst
+              </router-link>
+            </li>
+
+            <li>
+              <router-link to="#">
+               Djurporträtt
+              </router-link>
+              </li>
+
+            <li>
+              <router-link to="/chapters">
+                Böcker
+              </router-link>
+            </li>
+          </ul>
+        </h1>
+    </div>
+  </div>
 </template>
-
-<script>
-  import axios from "axios";
-
-  export default {
-    data() {
-      return {
-        user: {}
-      }
-    },
-
-    methods: {
-      getAccessToken() {
-        const url = window.location.href ;
-        console.log('Created', url);
-        const params = url.split('&');
-
-        let accessToken = ""
-
-        params.map((param) => {
-          if (param.includes('access_token')) {
-            const t = param.split('=');
-            accessToken = t[1];
-            this.getUserInfo(accessToken);
-          }
-        })
-
-        return accessToken;
-      },
-
-      getUserInfo(accessToken) {
-        const url = 'https://www.googleapis.com/oauth2/v2/userinfo?access_token=' + accessToken;
-        axios.get(url)
-          .then((res) => {
-            const data = res.data;
-            this.user = {
-              cookieVal: Math.floor(Math.random() * 10000000 * Date.now()).toString(16),
-              firstName: data.given_name,
-              lastName: data.family_name,
-              email: data.email,
-              photo: data.picture
-            };
-
-            this.setCookie('peckling', this.user.cookieVal, 365);
-            this.$store.dispatch('setUser', this.user);
-            this.$router.push("/");
-          })
-          .catch((err) => {
-              console.log(err);
-              this.$router.push('login');
-          });
-      },
-
-      setCookie(cname, cvalue, exdays) {
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        var expires = 'expires='+ d.toUTCString();
-        document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
-      }
-    },
-
-    created () {
-      // Check if there is a cookie
-      const cookie = document.cookie.match('(^|;) ?' + 'peckling' + '=([^;]*)(;|$)');
-      if (!cookie) {
-        // No cookie start login process
-        const token = this.getAccessToken();
-
-        if (token === "") {
-          // No token. Redirect to login
-          this.$router.push("/login");
-        } else {
-          // We have a token. Get user info
-          getUserInfo(token);
-        }
-      }
-    }
-  }
-</script>
 
 <style lang="scss" scoped>
 @import "../sass/main.scss";
+
+.index {
+  height: 100%;
+  width: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  width: 100vw;
+  height: 90vh;
+  text-align: center;
+  background-size: cover;
+  background-position: top;
+  background-image: linear-gradient( to left top, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url("../assets/img/palette.jpg");
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+}
+
+.button-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  a {
+    font-size: 3yarn.5rem;
+    color: $color-index-links;
+  }
+}
 </style>

@@ -7,6 +7,25 @@ body {
     box-sizing: border-box;
 }
 
+.primary-header {
+    font-family: "La Belle Aurore", cursive;
+    color: $color-paper-light;
+
+    .primary-main {
+        margin-top: 1rem;
+        display: block;
+        font-size: 8rem;
+        font-weight: 700;
+        letter-spacing: 0.1rem;
+    }
+    .primary-sub {
+        display: block;
+        font-size: 4.5rem;
+        letter-spacing: 0.2rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
 .secondary-header {
     font-size: $font-size-large;
     color: $color-menu-dark;

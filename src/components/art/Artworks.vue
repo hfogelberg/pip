@@ -1,20 +1,25 @@
 <template>
   <div class="artworks">
-    <div v-for="artwork in artworks">
-      <artwork :currentArtwork="artwork"></artwork>
+    <header></header>
+    <div class="container">
+      <div v-for="artwork in artworks">
+        <artwork :currentArtwork="artwork"></artwork>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Artwork from "./Artwork";
+import Header from "../Header";
 
 export default {
   mounted() {
     this.$store.dispatch("getArtworks");
   },
   components: {
-  'artwork': Artwork
+  'artwork': Artwork,
+  'header': Header
   },
   computed: {
     artworks() {
@@ -25,9 +30,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .artworks {
-    background-color: #bdc3c7;
-    height: 100vh;
-    width: 100%;
-  }
+
 </style>

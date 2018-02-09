@@ -5,9 +5,11 @@ import VueRouter from "vue-router";
 import router from "./router";
 import { store } from "./store/store.js";
 import App from "./App.vue";
+import VueObserveVisibility from "vue-observe-visibility";
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
+Vue.use(VueObserveVisibility);
 
 console.log("ENV in main: " + process.env.NODE_ENV);
 
