@@ -1,19 +1,20 @@
 import VueRouter from "vue-router";
 import Index from "./components/Index";
 import Login from "./components/Login";
-import Admin from "./components/Admin";
-import AdminCharacters from "./components/AdminCharacters";
-import CreateCharacter from "./components/CreateCharacter";
-import EditCharacter from "./components/EditCharacter.vue";
-import AdminChapters from "./components/AdminChapters";
-import CreateChapter from "./components/CreateChapter";
-import EditChapter from "./components/EditChapter";
-import Characters from "./components/Characters";
-import CreatePage from "./components/CreatePage";
-import Chapters from "./components/Chapters";
-import Chapter from "./components/Chapter";
-import Character from "./components/Character";
-import EditPage from "./components/EditPage";
+import Admin from "./components/admin/Admin";
+import AdminChapter from "./components/admin/AdminChapter";
+import AdminChapters from "./components/admin/AdminChapters";
+import AdminCharacters from "./components/admin/AdminCharacters";
+import CreateChapter from "./components/admin/CreateChapter";
+import CreateCharacter from "./components/adminCreateCharacter";
+import CreatePage from "./components/admin/CreatePage";
+import EditChapter from "./components/admin/EditChapter";
+import EditCharacter from "./components/admin/EditCharacter.vue";
+import EditPage from "./components/admin/EditPage";
+import Chapter from "./components/book/Chapter";
+import Chapters from "./components/book/Chapters";
+import Character from "./components/book/Character";
+import Characters from "./components/book/Characters";
 
 function redirectIfNotAuth(to, from, next) {
   const cookie = document.cookie.match(
@@ -31,71 +32,19 @@ const router = new VueRouter({
   routes: [
     { path: "/", component: Index },
     { path: "/login", component: Login },
-    {
-      path: "/admin",
-      component: Admin,
-      beforeEnter: redirectIfNotAuth
-    },
-    {
-      path: "/admin/characters",
-      component: AdminCharacters,
-      beforeEnter: redirectIfNotAuth
-    },
-    {
-      path: "/admin/editcharacter",
-      component: EditCharacter,
-      beforeEnter: redirectIfNotAuth
-    },
-    {
-      path: "/admin/characters/create",
-      component: CreateCharacter,
-      beforeEnter: redirectIfNotAuth
-    },
-    {
-      path: "/admin/chapters",
-      component: AdminChapters,
-      beforeEnter: redirectIfNotAuth
-    },
-    {
-      path: "/admin/chapters/create",
-      component: CreateChapter,
-      beforeEnter: redirectIfNotAuth
-    },
-    {
-      path: "/admin/editchapter",
-      component: EditChapter,
-      beforeEnter: redirectIfNotAuth
-    },
-    {
-      path: "/admin/addPage/:id",
-      component: CreatePage,
-      beforeEnter: redirectIfNotAuth
-    },
-    {
-      path: "/admin/editpage",
-      component: EditPage,
-      beforeEnter: redirectIfNotAuth
-    },
-    {
-      path: "/characters",
-      component: Characters,
-      beforeEnter: redirectIfNotAuth
-    },
-    {
-      path: "/character/:id",
-      component: Character,
-      beforeEnter: redirectIfNotAuth
-    },
-    {
-      path: "/chapters",
-      component: Chapters,
-      beforeEnter: redirectIfNotAuth
-    },
-    {
-      path: "/chapter",
-      component: Chapter,
-      beforeEnter: redirectIfNotAuth
-    }
+    { path: "/admin", component: Admin, beforeEnter: redirectIfNotAuth },
+    { path: "/admin/characters", component: AdminCharacters, beforeEnter: redirectIfNotAuth},
+    { path: "/admin/editcharacter", component: EditCharacter, beforeEnter: redirectIfNotAuth },
+    { path: "/admin/characters/create", component: CreateCharacter, beforeEnter: redirectIfNotAuth },
+    { path: "/admin/chapters", component: AdminChapters, beforeEnter: redirectIfNotAuth },
+    { path: "/admin/chapters/create", component: CreateChapter, beforeEnter: redirectIfNotAuth },
+    { path: "/admin/editchapter", component: EditChapter, beforeEnter: redirectIfNotAuth },
+    { path: "/admin/addPage/:id", component: CreatePage, beforeEnter: redirectIfNotAuth },
+    { path: "/admin/editpage", component: EditPage, beforeEnter: redirectIfNotAuth },
+    { path: "/characters", component: Characters, beforeEnter: redirectIfNotAuth },
+    { path: "/character/:id", component: Character, beforeEnter: redirectIfNotAuth },
+    { path: "/chapters", component: Chapters, beforeEnter: redirectIfNotAuth },
+    { path: "/chapter", component: Chapter, beforeEnter: redirectIfNotAuth }
   ]
 });
 

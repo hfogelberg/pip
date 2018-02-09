@@ -95,6 +95,10 @@ export default {
         headers: { "Content-Type": "application/x-www-form-urlencoded" }
       };
 
+      console.log("Upload presets: " + this.$store.getters.cloudinaryUploadPreset);
+      console.log("Upload url: " + url);
+
+
       axios
         .post(url, fd, config)
         .then(res => {

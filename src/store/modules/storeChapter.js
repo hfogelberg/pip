@@ -1,7 +1,5 @@
 import Vue from "vue";
-import {
-  API_ROOT_URL
-} from "../../settings";
+import {API_ROOT_URL} from "../../settings";
 import axios from "axios";
 
 const state = {

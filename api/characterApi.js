@@ -1,6 +1,4 @@
-const {
-  Character
-} = require("./models/characterModel");
+const {Character} = require("./models/characterModel");
 
 let character = (app, db, cloudinary) => {
   app.get("/api/characters", (req, res) => {

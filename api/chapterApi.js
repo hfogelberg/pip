@@ -1,6 +1,4 @@
-const {
-  Chapter
-} = require("./models/chapterModel");
+const {Chapter} = require("./models/chapterModel");
 
 let chapter = (app, db, cloudinary) => {
   app.post("/api/changepage", (req, res) => {
@@ -9,12 +7,8 @@ let chapter = (app, db, cloudinary) => {
     const text = req.body.text;
     const pageNumber = req.body.pageNumber;
     const image = req.body.image;
-    const query = {
-      "pages._id": pageId
-    };
-    const set = {
-      $set: page
-    };
+    const query = {"pages._id": pageId};
+    const set = {$set: page};
 
     Chapter.findOne({
         _id: chapterId
